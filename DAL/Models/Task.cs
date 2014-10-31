@@ -14,5 +14,7 @@ namespace DAL.Models
         public int TaskColumn { get; set; }
 
         public int TaskOrder { get; set; }
+
+        public int TaskUser { get; set; }
     }
 }

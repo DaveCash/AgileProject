@@ -1,5 +1,6 @@
 ﻿.kanboard {
     border-collapse: collapse;
+    table-layout:fixed;
     width: 100%;
     min-height: 200px;
 }
@@ -7,7 +8,8 @@
     border: 2px dashed #000;
     background: #fafafa;
     height: 73px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-top:5px;
     margin-left: auto ;
     margin-right: auto ;
     width:95%;
@@ -17,20 +19,46 @@
 }
 .kanboard th{
     text-align: left;
-    font-weight:bold;
-    background:lightblue;  
+    background:#f0f0f0;  
+    padding:5px;
 }
 .kanboard td{
-    width: 20%;   
+      
 }
-
 .task{
-    position: relative;  
+    position: relative;
+    margin-bottom: 5px;
+    margin-top: 5px;
     margin-left: auto ;
     margin-right: auto ;
-    border: 1px solid #000;
+    border: 1px solid orange;
+    background:lightyellow;
     padding: 5px;
     font-size: 95%;
     height: 65px;
-    width: 95%;
+    width: 92%;
+}
+
+.task_header 
+{
+    font-weight:bold;
+    border-bottom: 1px solid orange;
+}
+.task_footer
+{
+    
+    border-top:1px solid orange;   
+}
+.information_footer
+{
+    text-align:right;
+}
+.task_title 
+{
+    
+}
+.assigned_person
+{
+    font-style:italic;
+    float:right;
 }

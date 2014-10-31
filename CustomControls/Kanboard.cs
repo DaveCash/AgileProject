@@ -50,8 +50,34 @@ namespace CustomControls
                             output.AddAttribute("class", "task");
                             output.AddAttribute("data-task-id", task.TaskId.ToString());
                             output.RenderBeginTag("div");
-                            output.Write(task.TaskName);
-                            output.RenderEndTag();
+
+                                output.AddAttribute("class", "task_header");                      
+                                output.RenderBeginTag("div");
+                            
+                                    output.AddAttribute("class", "task_title");
+                                    output.RenderBeginTag("a");
+                                    output.Write(task.TaskName);
+                                    output.RenderEndTag();
+
+                                    output.AddAttribute("class", "assigned_person");
+                                    output.RenderBeginTag("a");
+                                    output.Write(task.TaskUser);
+                                    output.RenderEndTag();
+                                output.RenderEndTag();
+
+                                output.AddAttribute("class","task_body");
+                                output.RenderBeginTag("div");
+                                    output.Write("THIS IS TASK DECRIPTION");
+                                output.RenderEndTag();
+
+                                output.AddAttribute("class", "task_footer");    
+                                output.RenderBeginTag("div");
+                                    output.AddAttribute("class", "information_footer");
+                                    output.RenderBeginTag("a");
+                                        output.Write("THIS IS FOOTER");
+                                    output.RenderEndTag();
+                                    output.RenderEndTag();
+                                output.RenderEndTag();
                         }
                     }
                     output.RenderEndTag();
