@@ -22,6 +22,8 @@
                 }
             });
 
+            Kanboard.Init();
+
             //window.setInterval(checkBoard, 10 * 1000);
 
             function saveBoard(taskId, colIndex, index) {

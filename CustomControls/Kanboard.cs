@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DAL.Models;
-using System.Linq;
 
 namespace CustomControls
 {
@@ -30,8 +29,12 @@ namespace CustomControls
                 output.RenderBeginTag("tr");
                 for (var i = 1; i <= NumCols; i++)
                 {
+                    output.AddAttribute("data-col-index", i.ToString());
                     output.RenderBeginTag("th");
                     output.Write("Column " + i);
+                    output.RenderBeginTag("button");
+                        output.Write("Add!");
+                    output.RenderEndTag();
                     output.RenderEndTag();
                 }
                 output.RenderEndTag();
