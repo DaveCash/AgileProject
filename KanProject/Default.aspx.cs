@@ -14,12 +14,18 @@ namespace KanProject
         public int numCols;
         protected void Page_Load(object sender, EventArgs e)
         {
-            // THIS IS TEST DATA
-            numCols = 5;
+            User user = (User)Session["User"];
+            if (user != null)
+            {
+                Project project = ProjectsDAL.GetProject(user.UserId);
+                project.ProjectTasks = TasksDAL.GetProjectTasks(project.ProjectId);
+                Kanboard.Project = project;
 
-            Kanboard.Project = ProjectsDAL.GetProject();
+                // THIS IS TEST DATA
+                //numCols = 5;
 
-            List<User> users = UsersDAL.GetAllUsers();
+                //Kanboard.Project = ProjectsDAL.GetTestProject();
+            }
         }
     }
 }

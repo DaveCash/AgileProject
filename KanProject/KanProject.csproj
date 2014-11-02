@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="api\Projects.asmx" />
+    <Content Include="api\Tasks.asmx" />
     <Content Include="App_Data\AccessDB.mdb" />
     <Content Include="css\general.css" />
     <Content Include="css\jquery-ui.css" />
@@ -79,7 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="api\Test.asmx" />
-    <Content Include="DataForm.aspx" />
     <Content Include="App_Data\UserLevelsAndCustomerOrders2014.mdb" />
     <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
@@ -94,16 +94,13 @@
       <DependentUpon>Projects.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="api\Tasks.asmx.cs">
+      <DependentUpon>Tasks.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="api\Test.asmx.cs">
       <DependentUpon>Test.asmx</DependentUpon>
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DataForm.aspx.cs">
-      <DependentUpon>DataForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DataForm.aspx.designer.cs">
-      <DependentUpon>DataForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

@@ -25,6 +25,7 @@ namespace CustomControls
             {
                 output.AddAttribute(HtmlTextWriterAttribute.Id, this.ID);
                 output.AddAttribute("class", "kanboard");
+                output.AddAttribute("data-project-id", this.Project.ProjectId.ToString());
                 output.RenderBeginTag("table");
                 output.RenderBeginTag("tr");
                 for (var i = 1; i <= NumCols; i++)
@@ -46,46 +47,54 @@ namespace CustomControls
                     output.AddAttribute("data-col-index", i.ToString());
                     output.RenderBeginTag("td");
 
-                    foreach (var task in this.Project.ProjectTasks.OrderBy(t => t.TaskOrder))
-                    {
-                        if (task.TaskColumn == i)
+                    if (this.Project.ProjectTasks != null && this.Project.ProjectTasks.Count != 0) { 
+                        foreach (var task in this.Project.ProjectTasks.OrderBy(t => t.RowIndex))
                         {
-                            output.AddAttribute("class", "task");
-                            output.AddAttribute("data-task-id", task.TaskId.ToString());
-                            output.RenderBeginTag("div");
-
-                                output.AddAttribute("class", "task_header");                      
+                            if (task.ColIndex == i)
+                            {
+                                output.AddAttribute("class", "task");
+                                output.AddAttribute("data-task-id", task.TaskId.ToString());
                                 output.RenderBeginTag("div");
+
+                                    output.AddAttribute("class", "task_header");                      
+                                    output.RenderBeginTag("div");
                             
-                                    output.AddAttribute("class", "task_title");
-                                    output.RenderBeginTag("a");
-                                    output.Write(task.TaskName);
+                                        output.AddAttribute("class", "task_title");
+                                        output.RenderBeginTag("a");
+                                        output.Write(task.TaskName);
+                                        output.RenderEndTag();
+
+                                        output.AddAttribute("class", "assigned_person");
+                                        output.RenderBeginTag("a");
+                                        output.Write(task.TaskUser);
+                                        output.RenderEndTag();
                                     output.RenderEndTag();
 
-                                    output.AddAttribute("class", "assigned_person");
-                                    output.RenderBeginTag("a");
-                                    output.Write(task.TaskUser);
+                                    output.AddAttribute("class","task_body");
+                                    output.RenderBeginTag("div");
+                                        output.Write("THIS IS TASK DECRIPTION");
                                     output.RenderEndTag();
-                                output.RenderEndTag();
 
-                                output.AddAttribute("class","task_body");
-                                output.RenderBeginTag("div");
-                                    output.Write("THIS IS TASK DECRIPTION");
-                                output.RenderEndTag();
-
-                                output.AddAttribute("class", "task_footer");    
-                                output.RenderBeginTag("div");
-                                    output.AddAttribute("class", "information_footer");
-                                    output.RenderBeginTag("a");
-                                        output.Write("THIS IS FOOTER");
+                                    output.AddAttribute("class", "task_footer");    
+                                    output.RenderBeginTag("div");
+                                        output.AddAttribute("class", "information_footer");
+                                        output.RenderBeginTag("a");
+                                            output.Write("THIS IS FOOTER");
+                                        output.RenderEndTag();
+                                        output.RenderEndTag();
                                     output.RenderEndTag();
-                                    output.RenderEndTag();
-                                output.RenderEndTag();
+                            }
                         }
                     }
                     output.RenderEndTag();
                 }
                 output.RenderEndTag();
+                output.RenderEndTag();
+            }
+            else{
+                output.AddAttribute("class", "create-project-btn");
+                output.RenderBeginTag("button");
+                output.Write("Create Project");
                 output.RenderEndTag();
             }
         }

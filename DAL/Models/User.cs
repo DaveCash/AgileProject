@@ -6,22 +6,18 @@ using System.Data;
 
 namespace DAL.Models
 {
-    public enum UserLevel
-    {
-        Admin = 1,
-        Seller = 2,
-        Client = 3
-    }
     public class User
     {
+        public int UserId { get; set; }
+
         public string UserName { get; set; }
-        public UserLevel UserLevel { get; set; }
 
         public static User Create(IDataRecord record)
         {
             return new User
             {
-                UserName = record["Name"].ToString()
+                UserId = Convert.ToInt32(record["UserId"]),
+                UserName = record["UserName"].ToString()
             };
         }
     }

@@ -45,7 +45,7 @@ namespace DAL
             List<OleDbParameter> parameters = new List<OleDbParameter>();
             parameters.Add(new OleDbParameter("@UserName", OleDbType.VarChar) { Value = username });
 
-            user = connection.ExecuteTypedList<User>("SELECT * FROM UserData WHERE Ucase(Name)=Ucase(@UserName)", User.Create, parameters).FirstOrDefault();
+            user = connection.ExecuteTypedList<User>("SELECT * FROM UserData WHERE Ucase(UserName)=Ucase(@UserName)", User.Create, parameters).FirstOrDefault();
 
             return user;
         }
@@ -62,7 +62,7 @@ namespace DAL
             List<OleDbParameter> parameters = new List<OleDbParameter>();
             parameters.Add(new OleDbParameter("@UserName", OleDbType.VarChar) { Value = username });
 
-            dbConnection.ExecuteCmd("SELECT * FROM UserData WHERE Ucase(Name)=Ucase(@UserName)", parameters, "UsernameCheck");
+            dbConnection.ExecuteCmd("SELECT * FROM UserData WHERE Ucase(UserName)=Ucase(@UserName)", parameters, "UsernameCheck");
 
             if (!dbConnection.Reader.Read())
             {
@@ -70,11 +70,10 @@ namespace DAL
 
                 dbConnection.ExecuteNonQuery("" +
                 "INSERT INTO " +
-                "UserData (UserLevelID, [Name], [Password]) " +
-                "VALUES (1,@UserName,@Hash);", parameters);
+                "UserData ([UserName], [UserPassword]) " +
+                "VALUES (@UserName,@Hash);", parameters);
 
                 user.UserName = username;
-                user.UserLevel = UserLevel.Admin;
 
                 return user;
             }
@@ -91,16 +90,16 @@ namespace DAL
             List<OleDbParameter> parameters = new List<OleDbParameter>();
             parameters.Add(new OleDbParameter("@UserName", OleDbType.VarChar) { Value = username });
 
-            dbConnection.ExecuteCmd("SELECT * FROM UserData WHERE Ucase(Name)=Ucase(@UserName)", parameters);
+            dbConnection.ExecuteCmd("SELECT * FROM UserData WHERE Ucase(UserName)=Ucase(@UserName)", parameters);
 
             if (dbConnection.Reader.Read())
             {
-                string correctHash = dbConnection.Reader["Password"].ToString();
+                string correctHash = dbConnection.Reader["UserPassword"].ToString();
 
                 if (ValidatePassword(password, correctHash))
                 {
-                    user.UserName = dbConnection.Reader["Name"].ToString();
-                    user.UserLevel = (UserLevel)Enum.Parse(typeof(UserLevel), dbConnection.Reader["UserLevelID"].ToString());
+                    user = GetUserByUsername(dbConnection.Reader["UserName"].ToString());
+
                     return user;
                 };
             }
