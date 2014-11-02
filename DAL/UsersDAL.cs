@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using DAL.Models;
 using System.Security.Cryptography;
+using System.Data;
+using System.Data.OleDb;
 
 namespace DAL
 {
@@ -15,9 +17,37 @@ namespace DAL
 
             DBConnection connection = new DBConnection();
 
-            users = connection.ExecuteTypedList<User>("SELECT * FROM UserData", User.Create).ToList();
+            users = connection.ExecuteTypedList<User>("SELECT * FROM UserData", User.Create, null).ToList();
 
             return users;
+        }
+
+        public static User GetUserById(int userId)
+        {
+            User user = new User();
+
+            DBConnection connection = new DBConnection();
+
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@UserId", OleDbType.Integer) { Value = userId });
+
+            user = connection.ExecuteTypedList<User>("SELECT * FROM UserData WHERE ID = @UserId", User.Create, parameters).FirstOrDefault();
+
+            return user;
+        }
+
+        public static User GetUserByUsername(string username)
+        {
+            User user = new User();
+
+            DBConnection connection = new DBConnection();
+
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@UserName", OleDbType.VarChar) { Value = username });
+
+            user = connection.ExecuteTypedList<User>("SELECT * FROM UserData WHERE Ucase(Name)=Ucase(@UserName)", User.Create, parameters).FirstOrDefault();
+
+            return user;
         }
 
         public static User RegisterUser(string username, string password)
@@ -28,13 +58,20 @@ namespace DAL
 
             DBConnection dbConnection = new DBConnection();
             dbConnection.AddCmd("UsernameCheck");
-            dbConnection.ExecuteCmd("SELECT * FROM UserData WHERE Ucase(Name)=Ucase('" + username + "')", "UsernameCheck");
 
-            if (!dbConnection.Reader.Read()) {
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@UserName", OleDbType.VarChar) { Value = username });
+
+            dbConnection.ExecuteCmd("SELECT * FROM UserData WHERE Ucase(Name)=Ucase(@UserName)", parameters, "UsernameCheck");
+
+            if (!dbConnection.Reader.Read())
+            {
+                parameters.Add(new OleDbParameter("@Hash", OleDbType.VarChar) { Value = hash });
+
                 dbConnection.ExecuteNonQuery("" +
                 "INSERT INTO " +
                 "UserData (UserLevelID, [Name], [Password]) " +
-                "VALUES (1,'" + username + "','" + hash + "');");
+                "VALUES (1,@UserName,@Hash);", parameters);
 
                 user.UserName = username;
                 user.UserLevel = UserLevel.Admin;
@@ -50,7 +87,11 @@ namespace DAL
             User user = new User();
 
             DBConnection dbConnection = new DBConnection();
-            dbConnection.ExecuteCmd("SELECT * FROM UserData WHERE Ucase(Name)=Ucase('" + username + "')");
+
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@UserName", OleDbType.VarChar) { Value = username });
+
+            dbConnection.ExecuteCmd("SELECT * FROM UserData WHERE Ucase(Name)=Ucase(@UserName)", parameters);
 
             if (dbConnection.Reader.Read())
             {

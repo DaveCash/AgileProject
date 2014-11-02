@@ -27,22 +27,42 @@ namespace DAL.Models
             Cmds.Add("default", cmd);
         }
 
-        public void ExecuteCmd(string query, string cmdIdentifier = "default")
+        public void ExecuteCmd(string query, List<OleDbParameter> parameters = null, string cmdIdentifier = "default")
         {
             Open();
             if (!String.IsNullOrEmpty(query))
                 Cmds[cmdIdentifier].CommandText = query;
+
+            if (parameters != null)
+            {
+                foreach (var parameter in parameters)
+                {
+                    Cmds[cmdIdentifier].Parameters.Add(parameter);
+                }
+            }
 
             Reader = Cmds[cmdIdentifier].ExecuteReader();
+
+            Cmds[cmdIdentifier].Parameters.Clear();
         }
 
-        public void ExecuteNonQuery(string query, string cmdIdentifier = "default")
+        public void ExecuteNonQuery(string query, List<OleDbParameter> parameters = null, string cmdIdentifier = "default")
         {
             Open();
             if (!String.IsNullOrEmpty(query))
                 Cmds[cmdIdentifier].CommandText = query;
 
+            if (parameters != null)
+            {
+                foreach (var parameter in parameters)
+                {
+                    Cmds[cmdIdentifier].Parameters.Add(parameter);
+                }
+            }
+
             Cmds[cmdIdentifier].ExecuteNonQuery();
+
+            Cmds[cmdIdentifier].Parameters.Clear();
         }
 
         public void AddCmd(string cmdIdentifier)
@@ -69,11 +89,19 @@ namespace DAL.Models
         // SEE UsersDAL.GetAllUsers FOR EXAMPLE
         // string query: SQL query to execute
         // BuildObject: Function for mapping the object
-        public IEnumerable<T> ExecuteTypedList<T>(string query, Func<IDataRecord, T> BuildObject, string cmdIdentifier = "default")
+        public IEnumerable<T> ExecuteTypedList<T>(string query, Func<IDataRecord, T> BuildObject, List<OleDbParameter> parameters = null, string cmdIdentifier = "default")
         {
             Open();
             if (!String.IsNullOrEmpty(query))
                 Cmds[cmdIdentifier].CommandText = query;
+
+            if (parameters != null)
+            {
+                foreach (var parameter in parameters)
+                {
+                    Cmds[cmdIdentifier].Parameters.Add(parameter);
+                }
+            }
 
             Reader = Cmds[cmdIdentifier].ExecuteReader();
 
@@ -88,6 +116,8 @@ namespace DAL.Models
             {
                 Reader.Dispose();
             }
+
+            Cmds[cmdIdentifier].Parameters.Clear();
         }
 
         public static IEnumerable<T> GetData<T>(IDataReader reader, Func<IDataRecord, T> BuildObject)
