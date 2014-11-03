@@ -70,6 +70,7 @@
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\kanboard.css" />
     <Content Include="KanProject.Master" />
+    <Content Include="Assign_task.ascx" />
     <None Include="Properties\PublishProfiles\kanapp.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -139,6 +140,13 @@
     </Compile>
     <Compile Include="Sub_task.aspx.designer.cs">
       <DependentUpon>Sub_task.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Assign_task.ascx.cs">
+      <DependentUpon>Assign_task.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Assign_task.ascx.designer.cs">
+      <DependentUpon>Assign_task.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

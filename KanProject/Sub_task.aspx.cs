@@ -51,7 +51,7 @@ namespace KanProject
 
             OleDbCommand cmd = new OleDbCommand();
             cmd.Connection = Connection;
-            cmd.CommandText = "INSERT INTO Task(TaskName, TaskUSer, TaskEstimate)" + "VALUES('" + title.Text + "," + assignee.Items.ToString() + "," + origEstimate.Text + "')";
+            cmd.CommandText = "INSERT INTO Task(TaskName, TaskUSer, TaskEstimate)" + " VALUES('" + title.Text + "," + assignee.Items.ToString() + "," + origEstimate.Text + "')";
             cmd.CommandType = CommandType.Text;
 
             if (moreSubTask.Checked==true)
