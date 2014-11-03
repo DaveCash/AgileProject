@@ -12,11 +12,11 @@
             <asp:Panel ID="sTask" runat="server" >
             <table>
               <tr>
-                  <td>Tittle</td>
+                  <td>Title</td>
                   <td>Assignee</td>
               </tr>
               <tr>
-                  <td><asp:TextBox ID="tittle" runat="server" Width="400"></asp:TextBox></td>
+                  <td><asp:TextBox ID="title" runat="server" Width="400"></asp:TextBox></td>
                   <td><asp:DropDownList ID="assignee" runat="server"></asp:DropDownList></td>
               </tr>
             </table><br />
