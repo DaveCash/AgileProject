@@ -19,6 +19,8 @@ namespace KanProject
             {
                 Project project = ProjectsDAL.GetProject(user.UserId);
                 project.ProjectTasks = TasksDAL.GetProjectTasks(project.ProjectId);
+                project.ProjectSwimlanes = ProjectsDAL.GetProjectSwimlanes(project.ProjectId);
+
                 Kanboard.Project = project;
 
                 // THIS IS TEST DATA

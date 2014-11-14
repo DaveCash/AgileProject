@@ -14,8 +14,6 @@ namespace CustomControls
     [ToolboxData("<{0}:ServerControl1 runat=server></{0}:Kanboard>")]
     public class Kanboard : WebControl
     {
-        public int NumCols { get; set; }
-
         public Project Project {get; set;}
 
 
@@ -28,20 +26,23 @@ namespace CustomControls
                 output.AddAttribute("data-project-id", this.Project.ProjectId.ToString());
                 output.RenderBeginTag("table");
                 output.RenderBeginTag("tr");
-                for (var i = 1; i <= NumCols; i++)
+
+                int numCols = Project.ProjectSwimlanes.Count == 0 ? 5 : Project.ProjectSwimlanes.Count;
+
+                foreach (Swimlane swimlane in Project.ProjectSwimlanes)
                 {
-                    output.AddAttribute("data-col-index", i.ToString());
+                    output.AddAttribute("data-col-index", swimlane.ColIndex.ToString());
                     output.RenderBeginTag("th");
-                    output.Write("Column " + i);
+                    output.Write(swimlane.SwimlaneName);
                     output.RenderBeginTag("button");
-                        output.Write("Add!");
+                    output.Write("Add!");
                     output.RenderEndTag();
                     output.RenderEndTag();
                 }
                 output.RenderEndTag();
                 output.RenderBeginTag("tr");
 
-                for (var i = 1; i <= NumCols; i++)
+                for (var i = 1; i <= numCols; i++)
                 {
                     output.AddAttribute("class", "column");
                     output.AddAttribute("data-col-index", i.ToString());
@@ -60,6 +61,7 @@ namespace CustomControls
                                     output.RenderBeginTag("div");
                             
                                         output.AddAttribute("class", "task_title");
+                                        output.AddAttribute("href", "Assign_task.ascx");
                                         output.RenderBeginTag("a");
                                         output.Write(task.TaskName);
                                         output.RenderEndTag();
@@ -72,7 +74,7 @@ namespace CustomControls
 
                                     output.AddAttribute("class","task_body");
                                     output.RenderBeginTag("div");
-                                        output.Write("THIS IS TASK DECRIPTION");
+                                        output.Write(task.TaskDescription);
                                     output.RenderEndTag();
 
                                     output.AddAttribute("class", "task_footer");    

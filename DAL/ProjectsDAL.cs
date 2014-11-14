@@ -68,5 +68,32 @@ namespace DAL
 
             return project;
         }
+
+        public static List<Swimlane> GetProjectSwimlanes(int projectId)
+        {
+            List<Swimlane> lanes = new List<Swimlane>();
+
+            DBConnection dbConnection = new DBConnection();
+
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
+
+            lanes = dbConnection.ExecuteTypedList<Swimlane>("SELECT * FROM ProjectSwimlanes WHERE ProjectId=@ProjectId", Swimlane.Create, parameters).ToList();
+
+            return lanes;
+        }
+
+        public static List<Swimlane> GetDefaultSwimlanes()
+        {
+            List<Swimlane> lanes = new List<Swimlane>();
+
+            lanes.Add(new Swimlane() { SwimlaneName = "Col1", ColIndex = 1 });
+            lanes.Add(new Swimlane() { SwimlaneName = "Col2", ColIndex = 2 });
+            lanes.Add(new Swimlane() { SwimlaneName = "Col3", ColIndex = 3 });
+            lanes.Add(new Swimlane() { SwimlaneName = "Col4", ColIndex = 4 });
+            lanes.Add(new Swimlane() { SwimlaneName = "Col5", ColIndex = 5 });
+
+            return lanes;
+        }
     }
 }

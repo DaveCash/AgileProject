@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/kanboard.css" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="plhContentMain" runat="server">
-    <cc1:Kanboard runat="server" NumCols="5" ID="Kanboard"></cc1:Kanboard>
+    <cc1:Kanboard runat="server" ID="Kanboard"></cc1:Kanboard>
 
     <script type="text/javascript">
         $(document).ready(function () {

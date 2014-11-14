@@ -45,31 +45,36 @@
             task.id = 0;
             task.colIndex = colIndex;
 
-            $(".kanboard tr td[data-col-index=" + colIndex + "]").append(Kanboard.TaskTemplate(task.name));
+            var $task = $(".kanboard tr td[data-col-index=" + colIndex + "]").append(Kanboard.TaskTemplate(task.name));
 
-            var data = {
-                projectId: $(".kanboard").data("project-id"),
-                taskName: "new task",
-                taskDescription: "",
-                colIndex: colIndex,
-                rowIndex: 1
-            };
+            $task.find(".save-task").click(function (e) {
+                e.preventDefault();
+                var data = {
+                    projectId: $(".kanboard").data("project-id"),
+                    taskName: $task.find("input[name=taskName]").val(),
+                    taskDescription: $task.find("textarea").val(),
+                    colIndex: colIndex,
+                    rowIndex: 1
+                };
 
-            $.ajax({
-                type: "POST",
-                url: "api/Tasks.asmx/CreateTask",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify(data),
-                dataType: "json",
-                success: function (response) {
-                    console.log(response.d.success);
+                $.ajax({
+                    type: "POST",
+                    url: "api/Tasks.asmx/CreateTask",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response.d.success);
 
-                    if (!response.d.success)
-                        alert("SOMETHING WENT WRONG!");
-                },
-                failure: function (response) {
-                    alert(response.d);
-                }
+                        if (!response.d.success)
+                            alert("SOMETHING WENT WRONG!");
+
+                        window.setTimeout(window.location.reload.bind(window.location), 500);
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
             });
         }
         ,SaveTask: function (taskId, colIndex, rowIndex) {
@@ -97,14 +102,14 @@
             var html = 
             "<div class='task ui-sortable-handle'>" +
                 "<div class='task_header'>" +
-                    "<a class='task_title'>" + taskName + "</a>" +
+                    "<label class='label'>Name:</label><input class='control' type='text' name='taskName' value='New task'/>" +
                     "<a class='assigned_person'>" + 0 + "</a>" +
                 "</div>" +
-                "<div class='task_body'>" +
-                    "THIS IS TASK DESCRIPTION" +
+                "<div class='task_body' style='vertical-align:middle;'>" +
+                    "<label class='label'>Description:</label><textarea class='control' rows='4'>Task description</textarea>" +
                 "</div>" +
                 "<div class='task_footer'>" +
-                    "<a class='information_footer'>THIS IS TASK FOOTER</a>" +
+                    "<button class='save-task'>Save</button>" +
                 "</div>" +
             "</div>";
 

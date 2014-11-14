@@ -16,6 +16,8 @@ namespace DAL.Models
 
         public List<Task> ProjectTasks { get; set; }
 
+        public List<Swimlane> ProjectSwimlanes { get; set; }
+
         public static Project Create(IDataRecord record)
         {
             return new Project

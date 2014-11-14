@@ -80,7 +80,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="api\Test.asmx" />
     <Content Include="App_Data\UserLevelsAndCustomerOrders2014.mdb" />
     <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
@@ -98,10 +97,6 @@
     </Compile>
     <Compile Include="api\Tasks.asmx.cs">
       <DependentUpon>Tasks.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="api\Test.asmx.cs">
-      <DependentUpon>Test.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Default.aspx.cs">
