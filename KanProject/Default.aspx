@@ -11,7 +11,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             Kanboard.Init();
-            //blalbvklasnclaknaslkdn
+
             //window.setInterval(checkBoard, 10 * 1000);
             function checkBoard() {
                 //window.location.reload();
