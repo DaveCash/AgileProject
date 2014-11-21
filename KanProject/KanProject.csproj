@@ -66,11 +66,11 @@
     <Content Include="api\Projects.asmx" />
     <Content Include="api\Tasks.asmx" />
     <Content Include="App_Data\AccessDB.mdb" />
+    <Content Include="assign_task.aspx" />
     <Content Include="css\general.css" />
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\kanboard.css" />
     <Content Include="KanProject.Master" />
-    <Content Include="Assign_task.ascx" />
     <None Include="Properties\PublishProfiles\kanapp.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -98,6 +98,13 @@
     <Compile Include="api\Tasks.asmx.cs">
       <DependentUpon>Tasks.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="assign_task.aspx.cs">
+      <DependentUpon>assign_task.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="assign_task.aspx.designer.cs">
+      <DependentUpon>assign_task.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -135,13 +142,6 @@
     </Compile>
     <Compile Include="Sub_task.aspx.designer.cs">
       <DependentUpon>Sub_task.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Assign_task.ascx.cs">
-      <DependentUpon>Assign_task.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Assign_task.ascx.designer.cs">
-      <DependentUpon>Assign_task.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

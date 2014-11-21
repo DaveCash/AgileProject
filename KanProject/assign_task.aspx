@@ -1,5 +1,13 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Assign_task.ascx.cs" Inherits="KanProject.WebUserControl2" %>
-<asp:Panel ID="Panel1" runat="server">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="assign_task.aspx.cs" Inherits="KanProject.assign_task" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
     <h1>Assign Task</h1>
        <table>
             <tr>
@@ -16,4 +24,6 @@
             </tr>
        </table><br />
         <asp:Button ID="submit" runat="server" Text="Submit" OnClick="submit_Click"/>
- </asp:Panel>
+    </form>
+</body>
+</html>

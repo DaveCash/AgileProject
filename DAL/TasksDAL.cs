@@ -55,5 +55,10 @@ namespace DAL
 
             return tasks;
         }
+
+        public static object GetProjectTasks()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
