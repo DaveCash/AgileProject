@@ -19,7 +19,7 @@ namespace KanProject
                 listUser.Items.Add(new ListItem(item.UserName, item.UserId.ToString()));
             }
 
-            var task = DAL.TasksDAL.GetProjectTasks();
+            var task = DAL.TasksDAL.GetProjectTasks(1);
             foreach (var item in task)
             {
                 listTask.Items.Add(new ListItem(item.TaskName, item.TaskId.ToString()));

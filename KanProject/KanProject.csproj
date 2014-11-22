@@ -67,6 +67,7 @@
     <Content Include="api\Tasks.asmx" />
     <Content Include="App_Data\AccessDB.mdb" />
     <Content Include="assign_task.aspx" />
+    <Content Include="comment.aspx" />
     <Content Include="css\general.css" />
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\kanboard.css" />
@@ -88,6 +89,7 @@
     <Content Include="scripts\jquery-ui.js" />
     <Content Include="scripts\main.js" />
     <Content Include="Sub_task.aspx" />
+    <Content Include="upload.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +107,13 @@
     </Compile>
     <Compile Include="assign_task.aspx.designer.cs">
       <DependentUpon>assign_task.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="comment.aspx.cs">
+      <DependentUpon>comment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comment.aspx.designer.cs">
+      <DependentUpon>comment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -142,6 +151,13 @@
     </Compile>
     <Compile Include="Sub_task.aspx.designer.cs">
       <DependentUpon>Sub_task.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="upload.aspx.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="upload.aspx.designer.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
