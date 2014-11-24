@@ -19,15 +19,14 @@ namespace KanProject
             if (user != null)
             {
                 Project project = ProjectsDAL.GetProjectByUserId(user.UserId);
-                project.ProjectTasks = TasksDAL.GetProjectTasks(project.ProjectId);
-                project.ProjectSwimlanes = ProjectsDAL.GetProjectSwimlanes(project.ProjectId);
+
+                if (project != null)
+                {
+                    project.ProjectTasks = TasksDAL.GetProjectTasks(project.ProjectId);
+                    project.ProjectSwimlanes = ProjectsDAL.GetProjectSwimlanes(project.ProjectId);
+                }
 
                 Kanboard.Project = project;
-
-                // THIS IS TEST DATA
-                //numCols = 5;
-
-                //Kanboard.Project = ProjectsDAL.GetTestProject();
             }
         }
     }

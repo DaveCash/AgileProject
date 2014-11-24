@@ -53,6 +53,30 @@ namespace DAL
             return project;
         }
 
+        public static void UpdateProject(int projectId, string projectName, int ownerId, int[] userIds)
+        {
+            DBConnection dbConnection = new DBConnection();
+
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@ProjectName", OleDbType.VarChar) { Value = projectName });
+            parameters.Add(new OleDbParameter("@OwnerId", OleDbType.Integer) { Value = ownerId });
+            parameters.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
+
+            dbConnection.ExecuteNonQuery("UPDATE Project SET ProjectName=@ProjectName, OwnerId=@OwnerId WHERE ProjectId=@ProjectId", parameters);
+
+            List<OleDbParameter> paramList = new List<OleDbParameter>();
+            paramList.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
+            dbConnection.ExecuteNonQuery("DELETE FROM ProjectUsers WHERE ProjectId=@ProjectId", paramList);
+
+            foreach (int userId in userIds)
+            {
+                List<OleDbParameter> newParamList = new List<OleDbParameter>();
+                newParamList.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
+                newParamList.Add(new OleDbParameter("@UserId", OleDbType.Integer) { Value = userId });
+
+                dbConnection.ExecuteNonQuery("INSERT INTO ProjectUsers VALUES (@ProjectId, @UserId)", newParamList);
+            }
+        }
         public static Project GetProjectByUserId(int userId)
         {
             Project project = new Project();
@@ -63,6 +87,11 @@ namespace DAL
             parameters.Add(new OleDbParameter("@OwnerId", OleDbType.Integer) { Value = userId });
 
             project = dbConnection.ExecuteTypedList<Project>("SELECT * FROM Project WHERE OwnerId=@OwnerId", Project.Create, parameters).FirstOrDefault();
+
+            if (project == null)
+            {
+                project = dbConnection.ExecuteTypedList<Project>("SELECT Project.* FROM Project INNER JOIN ProjectUsers ON Project.ProjectId = ProjectUsers.ProjectId WHERE ProjectUsers.UserId=@OwnerId", Project.Create, parameters).FirstOrDefault();
+            }
 
             return project;
         }
