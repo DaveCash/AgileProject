@@ -4,14 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>KanBan</title>
     <script src="scripts/jquery-1.11.1.js"></script>
     <script src="scripts/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="css/general.css"/>
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" style="background-image: url('Image/背景1.jpg')">
+        <p>
+    <a href="http://www.lamk.fi"><asp:Image ID="Image1" runat="server" Height="75px" ImageUrl="~/Image/LAMK_logo_RGB.gif" Width="359px" /></a>
+        </p>
         <div id="login-tabs" class="login-form login-form ui-tabs ui-widget ui-widget-content ui-corner-all">
           <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
             <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active"><a href="#login-tab" class="ui-tabs-anchor">Login</a></li>
@@ -36,6 +39,12 @@
             </div>
         </div>
         </div>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

@@ -15,10 +15,12 @@
               <tr>
                   <td>Title</td>
                   <td>Assignee</td>
+                  <td>complexity</td>
               </tr>
               <tr>
-                  <td><asp:TextBox ID="title" runat="server" Width="400"></asp:TextBox></td>
+                  <td><asp:TextBox ID="title" runat="server" Width="400" OnTextChanged="title_TextChanged"></asp:TextBox></td>
                   <td><asp:DropDownList ID="assignee" runat="server"></asp:DropDownList></td>
+                  <td><asp:TextBox ID="complexity" runat="server" Width="73px" Height="19px"></asp:TextBox></td>
               </tr>
             </table><br />
             Orignal Estimate<asp:TextBox ID="origEstimate" runat="server"></asp:TextBox> hours<br />

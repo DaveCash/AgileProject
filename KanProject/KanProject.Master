@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>KanBan</title>
     <script src="scripts/jquery-1.11.1.js"></script>
     <script src="scripts/jquery-ui.js"></script>
     <script src="scripts/main.js"></script>
@@ -14,6 +14,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <a href="http://www.lamk.fi"><asp:Image ID="Image1" runat="server" Height="51px" ImageUrl="~/Image/LAMK_logo_RGB.gif" Width="280px" /></a>
     <form id="form1" runat="server">
         <label>KanApp!!!</label>
         <div style="float:right; margin-bottom: 12px;">
