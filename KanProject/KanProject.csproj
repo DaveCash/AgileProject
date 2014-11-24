@@ -71,6 +71,8 @@
     <Content Include="css\general.css" />
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\kanboard.css" />
+    <Content Include="image\LAMK_logo_RGB.gif" />
+    <Content Include="image\背景1.JPG" />
     <Content Include="KanProject.Master" />
     <None Include="Properties\PublishProfiles\kanapp.pubxml" />
     <None Include="Web.Debug.config">

@@ -10,7 +10,7 @@
                 }
             });
 
-            $(".kanboard tr th button").click(function(e){
+            $(".kanboard tr th button").click(function (e) {
                 e.preventDefault();
 
                 Kanboard.CreateTask($(e.currentTarget).closest("th").data("col-index"));
@@ -38,46 +38,45 @@
                 });
             });
         }
-        ,CreateTask: function (colIndex) {
+        , CreateTask: function (colIndex) {
+            $("#divWin").show();
+
             var task = {};
 
             task.name = "new task";
             task.id = 0;
             task.colIndex = colIndex;
 
-            var $task = $(".kanboard tr td[data-col-index=" + colIndex + "]").append(Kanboard.TaskTemplate(task.name));
+            $(".kanboard tr td[data-col-index=" + colIndex + "]").append(Kanboard.TaskTemplate(task.name));
 
-            $task.find(".save-task").click(function (e) {
-                e.preventDefault();
-                var data = {
-                    projectId: $(".kanboard").data("project-id"),
-                    taskName: $task.find("input[name=taskName]").val(),
-                    taskDescription: $task.find("textarea").val(),
-                    colIndex: colIndex,
-                    rowIndex: 1
-                };
+            var data = {
+                projectId: $(".kanboard").data("project-id"),
+                taskName: "new task",
+                taskDescription: "",
+                colIndex: colIndex,
+                rowIndex: 1
+            };
 
-                $.ajax({
-                    type: "POST",
-                    url: "api/Tasks.asmx/CreateTask",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(data),
-                    dataType: "json",
-                    success: function (response) {
-                        console.log(response.d.success);
-
-                        if (!response.d.success)
-                            alert("SOMETHING WENT WRONG!");
-
-                        window.setTimeout(window.location.reload.bind(window.location), 500);
-                    },
-                    failure: function (response) {
-                        alert(response.d);
-                    }
-                });
-            });
+            $("#plhContentMain_Assign_task_projectId").attr("value", $(".kanboard").data("project-id"))
+            $("#plhContentMain_Assign_task_colIndex").attr("value", colIndex)
+            /*  $.ajax({
+                  type: "POST",
+                  url: "api/Tasks.asmx/CreateTask",
+                  contentType: "application/json; charset=utf-8",
+                  data: JSON.stringify(data),
+                  dataType: "json",
+                  success: function (response) {
+                      console.log(response.d.success);
+                      $("#divWin").show();
+                      if (!response.d.success)
+                          alert("SOMETHING WENT WRONG!");
+                  },
+                  failure: function (response) {
+                      alert(response.d);
+                  }
+              });*/
         }
-        ,SaveTask: function (taskId, colIndex, rowIndex) {
+        , SaveTask: function (taskId, colIndex, rowIndex) {
             var data = {
                 taskId: taskId,
                 colIndex: colIndex,
@@ -98,18 +97,18 @@
                 }
             });
         }
-        ,TaskTemplate: function (taskName) {
-            var html = 
+        , TaskTemplate: function (taskName) {
+            var html =
             "<div class='task ui-sortable-handle'>" +
                 "<div class='task_header'>" +
-                    "<label class='label'>Name:</label><input class='control' type='text' name='taskName' value='New task'/>" +
+                    "<a class='task_title'>" + taskName + "</a>" +
                     "<a class='assigned_person'>" + 0 + "</a>" +
                 "</div>" +
-                "<div class='task_body' style='vertical-align:middle;'>" +
-                    "<label class='label'>Description:</label><textarea class='control' rows='4'>Task description</textarea>" +
+                "<div class='task_body'>" +
+                    "THIS IS TASK " +
                 "</div>" +
                 "<div class='task_footer'>" +
-                    "<button class='save-task'>Save</button>" +
+                    "<a class='information_footer'>THIS IS TASK FOOTER</a>" +
                 "</div>" +
             "</div>";
 
