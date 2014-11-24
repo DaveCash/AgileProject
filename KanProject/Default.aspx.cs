@@ -18,7 +18,7 @@ namespace KanProject
             User user = (User)Session["User"];
             if (user != null)
             {
-                Project project = ProjectsDAL.GetProject(user.UserId);
+                Project project = ProjectsDAL.GetProjectByUserId(user.UserId);
                 project.ProjectTasks = TasksDAL.GetProjectTasks(project.ProjectId);
                 project.ProjectSwimlanes = ProjectsDAL.GetProjectSwimlanes(project.ProjectId);
 

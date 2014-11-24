@@ -84,6 +84,7 @@
     <Content Include="App_Data\UserLevelsAndCustomerOrders2014.mdb" />
     <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="ProjectEdit.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="scripts\jquery-1.11.1.js" />
     <Content Include="scripts\jquery-ui.js" />
@@ -136,6 +137,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectEdit.aspx.cs">
+      <DependentUpon>ProjectEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectEdit.aspx.designer.cs">
+      <DependentUpon>ProjectEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">

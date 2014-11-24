@@ -22,6 +22,21 @@ namespace DAL
             return users;
         }
 
+        public static List<User> GetUsersByProject(int projectId)
+        {
+            List<User> users = new List<User>();
+
+            DBConnection connection = new DBConnection();
+
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
+
+            users = connection.ExecuteTypedList<User>("SELECT UserData.* FROM UserData INNER JOIN ProjectUsers ON UserData.UserId = ProjectUsers.UserId WHERE ProjectUsers.ProjectId = 1"
+                , User.Create, parameters).ToList();
+
+            return users;
+        }
+
         public static User GetUserById(int userId)
         {
             User user = new User();

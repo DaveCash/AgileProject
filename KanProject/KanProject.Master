@@ -15,7 +15,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div style="text-align:right; margin-bottom: 12px;">
+        <label>KanApp!!!</label>
+        <div style="float:right; margin-bottom: 12px;">
+            <asp:DropDownList runat="server" ID="ddlProjects"></asp:DropDownList>
+            <asp:Button runat="server" ID="btnEditProject" OnClick="btnEditProject_Click" Text="Edit project"></asp:Button>
             <asp:Button runat="server" ID="btnLogout" OnClick="btnLogout_Click"/>
         </div>
         <div>

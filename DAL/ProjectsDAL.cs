@@ -53,7 +53,7 @@ namespace DAL
             return project;
         }
 
-        public static Project GetProject(int userId)
+        public static Project GetProjectByUserId(int userId)
         {
             Project project = new Project();
 
@@ -64,7 +64,19 @@ namespace DAL
 
             project = dbConnection.ExecuteTypedList<Project>("SELECT * FROM Project WHERE OwnerId=@OwnerId", Project.Create, parameters).FirstOrDefault();
 
+            return project;
+        }
 
+        public static Project GetProjectByProjectId(int projectId)
+        {
+            Project project = new Project();
+
+            DBConnection dbConnection = new DBConnection();
+
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
+
+            project = dbConnection.ExecuteTypedList<Project>("SELECT * FROM Project WHERE ProjectId=@ProjectId", Project.Create, parameters).FirstOrDefault();
 
             return project;
         }
@@ -94,6 +106,20 @@ namespace DAL
             lanes.Add(new Swimlane() { SwimlaneName = "Col5", ColIndex = 5 });
 
             return lanes;
+        }
+
+        public static List<Project> GetUserProjects(int userId)
+        {
+            List<Project> projects = new List<Project>();
+
+            DBConnection dbConnection = new DBConnection();
+
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@UserId", OleDbType.Integer) { Value = userId });
+
+            projects = dbConnection.ExecuteTypedList<Project>("SELECT * FROM Project WHERE OwnerId=@UserId", Project.Create, parameters).ToList();
+
+            return projects;
         }
     }
 }
