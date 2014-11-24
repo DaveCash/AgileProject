@@ -90,6 +90,7 @@
     <Content Include="Register.aspx" />
     <Content Include="scripts\jquery-1.11.1.js" />
     <Content Include="scripts\jquery-ui.js" />
+    <Content Include="scripts\jquery_dialog.js" />
     <Content Include="scripts\main.js" />
     <Content Include="Sub_task.aspx" />
     <Content Include="upload.aspx" />
