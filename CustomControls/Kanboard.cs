@@ -29,15 +29,31 @@ namespace CustomControls
 
                 int numCols = Project.ProjectSwimlanes.Count == 0 ? 5 : Project.ProjectSwimlanes.Count;
 
-                foreach (Swimlane swimlane in Project.ProjectSwimlanes)
+                if (Project.ProjectSwimlanes != null && Project.ProjectSwimlanes.Count > 0)
                 {
-                    output.AddAttribute("data-col-index", swimlane.ColIndex.ToString());
-                    output.RenderBeginTag("th");
-                    output.Write(swimlane.SwimlaneName);
-                    output.RenderBeginTag("button");
-                    output.Write("Add!");
-                    output.RenderEndTag();
-                    output.RenderEndTag();
+                    foreach (Swimlane swimlane in Project.ProjectSwimlanes)
+                    {
+                        output.AddAttribute("data-col-index", swimlane.ColIndex.ToString());
+                        output.RenderBeginTag("th");
+                        output.Write(swimlane.SwimlaneName);
+                        output.RenderBeginTag("button");
+                        output.Write("Add!");
+                        output.RenderEndTag();
+                        output.RenderEndTag();
+                    }
+                }
+                else
+                {
+                    for (int i = 1; i <= 5; i++)
+                    {
+                        output.AddAttribute("data-col-index", i.ToString());
+                        output.RenderBeginTag("th");
+                        output.Write("Column " + i);
+                        output.RenderBeginTag("button");
+                        output.Write("Add!");
+                        output.RenderEndTag();
+                        output.RenderEndTag();
+                    }
                 }
                 output.RenderEndTag();
                 output.RenderBeginTag("tr");
