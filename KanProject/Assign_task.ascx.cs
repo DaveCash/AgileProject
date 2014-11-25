@@ -7,12 +7,13 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.OleDb;
 using System.Text.RegularExpressions;
+using System.Text;
 namespace KanProject
 {
 
     public partial class WebUserControl2 : System.Web.UI.UserControl
     {
-
+        sqlHelp sh = new sqlHelp();
         protected void Page_Load(object sender, EventArgs e)
         {
             string projectPath = @"|DataDirectory|\AccessDB.mdb;";
@@ -50,10 +51,7 @@ namespace KanProject
 
         protected void submit_Click(object sender, EventArgs e)
         {
-            string projectPath = @"|DataDirectory|\AccessDB.mdb;";
-            string conStr = "Provider = Microsoft.Jet.OLEDB.4.0;" + "Data Source = " + projectPath;
-            OleDbConnection Connection = new OleDbConnection();
-            Connection.ConnectionString = conStr;
+           
             try
             {
                 if (!Regex.IsMatch(Complexity.Text.Trim(), @"^\d+$"))
@@ -61,15 +59,20 @@ namespace KanProject
                     Page.ClientScript.RegisterStartupScript(GetType(), "", "alert(\"Complexity只能是整数\");", true);
                     return;
                 }
-
-
-                Connection.Open();
-
-                OleDbCommand cmd = new OleDbCommand();
-                cmd.Connection = Connection;
-                cmd.CommandText = "INSERT INTO Task(ProjectId,RowIndex,ColIndex,TaskDetail,TaskComplexity,TaskUser,TaskName)" + " VALUES(" + projectId.Value + ",1," + colIndex.Value + ",'" + taskDes.Text + "'," + Complexity.Text + ",0,'" + txtTaskName.Text + "')";
-                cmd.CommandType = CommandType.Text;
-                cmd.ExecuteNonQuery();
+                StringBuilder sb = new StringBuilder();
+                if (string.IsNullOrEmpty(TaskId.Value))
+                {
+                    sb.Append("INSERT INTO Task(ProjectId,RowIndex,ColIndex,TaskDetail,TaskComplexity,TaskUser,TaskName)" + " VALUES(" + projectId.Value + ",1," + colIndex.Value + ",'" + taskDes.Text + "'," + Complexity.Text + ",0,'" + txtTaskName.Text + "')");
+                }
+                else
+                {
+                    sb.Append("update Task set ");
+                    sb.Append(" TaskName='" + txtTaskName.Text + "',");
+                    sb.Append("TaskDetail='" + taskDes.Text + "',");
+                    sb.Append("TaskComplexity=" + Complexity.Text);
+                    sb.Append(" where TaskId=" + TaskId.Value);
+                }
+                sh.excuSql(sb.ToString());
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "alert(\"保存成功\");", true);
                 Response.Redirect("Default.aspx");
             }
@@ -78,13 +81,7 @@ namespace KanProject
 
                 Page.ClientScript.RegisterStartupScript(GetType(), "", "alert(\"" + ex.Message + "\");", true);
             }
-            finally
-            {
-                if (Connection.State == ConnectionState.Open)
-                    Connection.Close();
-
-
-            }
+           
 
         }
 

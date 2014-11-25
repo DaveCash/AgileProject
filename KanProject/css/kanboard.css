@@ -35,37 +35,18 @@
     background:lightyellow;
     padding: 5px;
     font-size: 95%;
+    height: 65px;
     width: 92%;
-}
-.label {
-    display: inline-block;
-    width: 30%;
-    font-weight: bold;
-}
-.control{
-    width: 60%;
-}
-.save-task{
-    float:right;
-}
-.task_body *{
-    vertical-align: top;
 }
 
 .task_header 
 {
     font-weight:bold;
     border-bottom: 1px solid orange;
-    padding-bottom: 5px;
-}
-.task_body{
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 .task_footer
 {
-    overflow: auto;
-    padding-top: 5px;
+    
     border-top:1px solid orange;   
 }
 .information_footer

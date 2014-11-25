@@ -3,6 +3,7 @@
 <%@ Register Assembly="CustomControls" Namespace="CustomControls" TagPrefix="cc1" %>
 <%@ Register Src="~/Assign_task.ascx" TagPrefix="uc1" TagName="Assign_task" %>
 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="css/kanboard.css" />
 </asp:Content>
@@ -32,8 +33,48 @@
                 //});
             }
         });
+
+        function del(id) {
+            $.ajax({
+                url: "/kanp.ashx?action=del&id=" + id,
+                dataType: "json",
+                success: function (data) {
+                    if (data.msg == "1") {
+                        alert("delete success!");
+                        window.location.reload();
+                    }
+                    else
+                        alert(data.msg);
+
+                }
+
+            })
+
+        }
+        function edit(id) {
+            $.ajax({
+                url: "/kanp.ashx?action=edit&id=" +id,
+                dataType: "json",
+                success: function (data) {
+                    if (data.msg == "1") {
+                        $("#plhContentMain_Assign_task_TaskId").attr("value", data.TaskId);
+                        $("#plhContentMain_Assign_task_projectId").attr("value", data.ProjectId)
+                        $("#plhContentMain_Assign_task_colIndex").attr("value", data.ColIndex);
+                        $("#plhContentMain_Assign_task_txtTaskName").attr("value", data.TaskName);
+                        $("#plhContentMain_Assign_task_taskDes").attr("value", data.TaskDetail);
+                        $("#plhContentMain_Assign_task_Complexity").attr("value", data.TaskComplexity);
+                        $("#divWin").show();
+                    }
+                    else
+                        alert(data.msg);
+
+                }
+
+            })
+
+        }
     </script>
-    <div id="divWin" style="display:none;position:fixed;top:100px;left:300px; background-color:#FFFFE0;border:5px solid #F6A828;width:600px;height:400px;padding:10px;">
+    <div  id="divWin" style="display:none;position:fixed;top:100px;left:300px; background-color:#FFFFE0;border:5px solid #F6A828;width:600px;height:400px;padding:10px;">
     <uc1:Assign_task runat="server" ID="Assign_task" />
     </div>
 </asp:Content>

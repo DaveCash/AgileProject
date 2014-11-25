@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using DAL.Models;
 using DAL;
 
-
 namespace KanProject
 {
     public partial class Default : System.Web.UI.Page
@@ -18,15 +17,14 @@ namespace KanProject
             User user = (User)Session["User"];
             if (user != null)
             {
-                Project project = ProjectsDAL.GetProjectByUserId(user.UserId);
-
-                if (project != null)
-                {
-                    project.ProjectTasks = TasksDAL.GetProjectTasks(project.ProjectId);
-                    project.ProjectSwimlanes = ProjectsDAL.GetProjectSwimlanes(project.ProjectId);
-                }
-
+                Project project = ProjectsDAL.GetProject(user.UserId);
+                project.ProjectTasks = TasksDAL.GetProjectTasks(project.ProjectId);
                 Kanboard.Project = project;
+
+                // THIS IS TEST DATA
+                //numCols = 5;
+
+                //Kanboard.Project = ProjectsDAL.GetTestProject();
             }
         }
     }

@@ -66,14 +66,16 @@
     <Content Include="api\Projects.asmx" />
     <Content Include="api\Tasks.asmx" />
     <Content Include="App_Data\AccessDB.mdb" />
-    <Content Include="assign_task.aspx" />
+    <Content Include="Assign_task.ascx" />
     <Content Include="comment.aspx" />
     <Content Include="css\general.css" />
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\kanboard.css" />
+    <Content Include="Default.aspx" />
     <Content Include="image\LAMK_logo_RGB.gif" />
     <Content Include="image\背景1.JPG" />
     <Content Include="KanProject.Master" />
+    <Content Include="kanp.ashx" />
     <None Include="Properties\PublishProfiles\kanapp.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -84,7 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\UserLevelsAndCustomerOrders2014.mdb" />
-    <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="ProjectEdit.aspx" />
     <Content Include="Register.aspx" />
@@ -105,12 +106,12 @@
       <DependentUpon>Tasks.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="assign_task.aspx.cs">
-      <DependentUpon>assign_task.aspx</DependentUpon>
+    <Compile Include="Assign_task.ascx.cs">
+      <DependentUpon>Assign_task.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="assign_task.aspx.designer.cs">
-      <DependentUpon>assign_task.aspx</DependentUpon>
+    <Compile Include="Assign_task.ascx.designer.cs">
+      <DependentUpon>Assign_task.ascx</DependentUpon>
     </Compile>
     <Compile Include="comment.aspx.cs">
       <DependentUpon>comment.aspx</DependentUpon>
@@ -127,6 +128,9 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs" />
+    <Compile Include="kanp.ashx.cs">
+      <DependentUpon>kanp.ashx</DependentUpon>
+    </Compile>
     <Compile Include="KanProject.Master.cs">
       <DependentUpon>KanProject.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -156,6 +160,7 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="sqlHelp.cs" />
     <Compile Include="Sub_task.aspx.cs">
       <DependentUpon>Sub_task.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
