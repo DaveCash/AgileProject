@@ -17,6 +17,8 @@
     <a href="http://www.lamk.fi"><asp:Image ID="Image1" runat="server" Height="51px" ImageUrl="~/Image/LAMK_logo_RGB.gif" Width="280px" /></a>
     <form id="form1" runat="server">
         <div style="text-align:right; margin-bottom: 12px;">
+            <asp:DropDownList runat="server" ID="ddlProjects"></asp:DropDownList>
+            <asp:Button runat="server" ID="btnEditProject" OnClick="btnEditProject_Click" Text="Edit project"></asp:Button>
             <asp:Button runat="server" ID="btnLogout" OnClick="btnLogout_Click"/>
         </div>
         <div>
