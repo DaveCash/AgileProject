@@ -49,6 +49,9 @@ namespace DAL.Models
         public void ExecuteNonQuery(string query, List<OleDbParameter> parameters = null, string cmdIdentifier = "default")
         {
             Open();
+            OleDbTransaction transaction = Connection.BeginTransaction();
+            Cmds[cmdIdentifier].Transaction = transaction;
+
             if (!String.IsNullOrEmpty(query))
                 Cmds[cmdIdentifier].CommandText = query;
 
@@ -63,6 +66,9 @@ namespace DAL.Models
             Cmds[cmdIdentifier].ExecuteNonQuery();
 
             Cmds[cmdIdentifier].Parameters.Clear();
+
+            transaction.Commit();
+            Close();
         }
 
         public void AddCmd(string cmdIdentifier)

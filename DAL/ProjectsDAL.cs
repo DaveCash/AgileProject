@@ -77,6 +77,25 @@ namespace DAL
                 dbConnection.ExecuteNonQuery("INSERT INTO ProjectUsers VALUES (@ProjectId, @UserId)", newParamList);
             }
         }
+
+        public static void SaveProjectSwimlanes(int projectId, List<Swimlane> swimlanes)
+        {
+            DBConnection dbConnection = new DBConnection();
+
+            List<OleDbParameter> paramList = new List<OleDbParameter>();
+            paramList.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
+            dbConnection.ExecuteNonQuery("DELETE FROM ProjectSwimlanes WHERE ProjectId=@ProjectId", paramList);
+
+            foreach (Swimlane lane in swimlanes)
+            {
+                List<OleDbParameter> newParamList = new List<OleDbParameter>();
+                newParamList.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
+                newParamList.Add(new OleDbParameter("@SwimlaneName", OleDbType.VarChar) { Value = lane.SwimlaneName });
+                newParamList.Add(new OleDbParameter("@ColIndex", OleDbType.Integer) { Value = lane.ColIndex });
+
+                dbConnection.ExecuteNonQuery("INSERT INTO ProjectSwimlanes VALUES (@ProjectId, @SwimlaneName, @ColIndex)", newParamList);
+            }
+        }
         public static Project GetProjectByUserId(int userId)
         {
             Project project = new Project();

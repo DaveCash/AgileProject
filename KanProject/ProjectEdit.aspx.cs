@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 using DAL;
 using DAL.Models;
 
@@ -11,11 +12,13 @@ namespace KanProject
 {
     public partial class ProjectEdit : System.Web.UI.Page
     {
+        public int projectId;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 Project project = ProjectsDAL.GetProjectByProjectId(Convert.ToInt32(Request["ProjectId"]));
+                projectId = project.ProjectId;
 
                 List<User> users = UsersDAL.GetUsersByProject(project.ProjectId);
 
@@ -39,6 +42,10 @@ namespace KanProject
                     if (selectedUsers.Contains(Convert.ToInt32(cblUsers.Items[i].Value)))
                         cblUsers.Items[i].Selected = true;
                 }
+
+                List<Swimlane> swimlanes = ProjectsDAL.GetProjectSwimlanes(project.ProjectId).OrderBy(s => s.ColIndex).ToList();
+                rptSwimlanes.DataSource = swimlanes;
+                rptSwimlanes.DataBind();
             }
         }
 
@@ -52,8 +59,7 @@ namespace KanProject
 
             ProjectsDAL.UpdateProject(projectId, projectName, ownerId, projectUserIds);
 
-            
-
+            var items = rptSwimlanes.Items;
 
             System.Threading.Thread.Sleep(500);
             Response.Redirect("Default.aspx?ProjectId=" + projectId);

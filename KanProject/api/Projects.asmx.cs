@@ -39,5 +39,26 @@ namespace KanProject.api
 
             return new { success = true };
         }
+
+        [WebMethod(EnableSession = true)]
+        public object SaveProjectSwimlanes(int projectId, string[] swimlaneNames, int[] colIndexes)
+        {
+            User user = (User)Session["User"];
+
+            List<Swimlane> swimlanes = new List<Swimlane>();
+
+            for(var i = 0; i < swimlaneNames.Length; i++){
+                Swimlane lane = new Swimlane();
+                lane.ProjectId = projectId;
+                lane.SwimlaneName = swimlaneNames[i];
+                lane.ColIndex = colIndexes[i];
+
+                swimlanes.Add(lane);
+            }
+
+            ProjectsDAL.SaveProjectSwimlanes(projectId, swimlanes);
+
+            return new { success = true };
+        }
     }
 }

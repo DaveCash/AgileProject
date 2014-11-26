@@ -25,8 +25,6 @@ namespace KanProject
             {
                 try
                 {
-                    
-                    
                     string filename = Path.GetFileName(FileUploadControl.FileName);
                     FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
 
@@ -37,7 +35,7 @@ namespace KanProject
 
                     con.ExecuteNonQuery("" +
                     "INSERT INTO" + " Task([TaskAttachment])" +
-                    "VALUES (@link)" + parameters);
+                    "VALUES (@link)" + parameters + ";");
                     StatusLabel.Text = "Upload status: File uploaded!";
                     
                 }
