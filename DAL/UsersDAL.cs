@@ -90,8 +90,12 @@ namespace DAL
 
                 user.UserName = username;
 
+                dbConnection.Close();
+
                 return user;
             }
+
+            dbConnection.Close();
 
             return null;
         }
@@ -115,9 +119,14 @@ namespace DAL
                 {
                     user = GetUserByUsername(dbConnection.Reader["UserName"].ToString());
 
+                    dbConnection.Close();
+
                     return user;
                 };
             }
+
+            dbConnection.Close();
+
             return null;
         }
 

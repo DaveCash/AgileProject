@@ -121,9 +121,11 @@ namespace DAL.Models
             finally
             {
                 Reader.Dispose();
+                Close();
             }
 
             Cmds[cmdIdentifier].Parameters.Clear();
+            Close();
         }
 
         public static IEnumerable<T> GetData<T>(IDataReader reader, Func<IDataRecord, T> BuildObject)
