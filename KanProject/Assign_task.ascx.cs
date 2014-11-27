@@ -56,7 +56,7 @@ namespace KanProject
             {
                 if (!Regex.IsMatch(Complexity.Text.Trim(), @"^\d+$"))
                 {
-                    Page.ClientScript.RegisterStartupScript(GetType(), "", "alert(\"Complexity只能是整数\");", true);
+                    Page.ClientScript.RegisterStartupScript(GetType(), "", "alert(\"Please input a number!\");", true);
                     return;
                 }
                 StringBuilder sb = new StringBuilder();
@@ -73,7 +73,7 @@ namespace KanProject
                     sb.Append(" where TaskId=" + TaskId.Value);
                 }
                 sh.excuSql(sb.ToString());
-                Page.ClientScript.RegisterStartupScript(GetType(), "", "alert(\"保存成功\");", true);
+                Page.ClientScript.RegisterStartupScript(GetType(), "", "alert(\"Saved successfully\");", true);
                 Response.Redirect("Default.aspx");
             }
             catch (Exception ex)
