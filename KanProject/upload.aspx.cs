@@ -32,10 +32,10 @@ namespace KanProject
                     
                     List<OleDbParameter> parameters = new List<OleDbParameter>();
                     parameters.Add(new OleDbParameter("@link", OleDbType.VarChar) { Value = upload });
-
+                    
                     con.ExecuteNonQuery("" +
-                    "INSERT INTO" + " Task([TaskAttachment])" +
-                    "VALUES (@link)" + parameters + ";");
+                    "INSERT INTO" + " Task([TaskAttachment]) " +
+                    "VALUES (@link);" , parameters);
                     StatusLabel.Text = "Upload status: File uploaded!";
                     
                 }

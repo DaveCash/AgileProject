@@ -14,6 +14,8 @@ namespace DAL.Models
 
         public string TaskDescription { get; set; }
 
+        public int ParentId { get; set; }
+
         public int ColIndex { get; set; }
 
         public int RowIndex { get; set; }

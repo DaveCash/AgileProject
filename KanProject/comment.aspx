@@ -12,8 +12,8 @@
         <asp:TextBox ID="commentBox" runat="server" Height="175" Width="400"></asp:TextBox>
         <table>
             <tr>
-                <td><asp:Button ID="submit" runat="server" Text="Submit" OnClick="submit_Click1" /></td>
-                <td><asp:Button ID="cancel" runat="server" Text="Cancel" OnClick="cancel_Click" /></td>
+                <td><asp:Button ID="submit" runat="server" Text="Submit" OnClick="submit_Click" /></td>
+                <td><asp:Button ID="cancel" runat="server" Text="Clear" OnClick="cancel_Click" /></td>
             </tr>
         </table>
     </form>

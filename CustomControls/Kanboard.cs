@@ -116,10 +116,27 @@ namespace CustomControls
                                 output.RenderEndTag();
 
                                 output.AddAttribute("class", "task_footer");
+                                
                                 output.RenderBeginTag("div");
                                 output.AddAttribute("class", "information_footer");
+                                output.AddAttribute("href", "Sub_task.aspx?task_id=" + task.TaskId.ToString());
                                 output.RenderBeginTag("a");
-                                output.Write("THIS IS FOOTER");
+                                output.Write("Sub Task");
+
+                                //output.RenderBeginTag("div");
+                                //output.AddAttribute("class", "upload");
+                                //output.AddAttribute("href", "upload.aspx");
+                                //output.RenderBeginTag("a");
+                                //output.Write("Upload file");
+
+                                
+
+                                ////output.AddAttribute("href", "comment.aspx");
+                                ////output.RenderBeginTag("a");
+                                ////output.Write("Give comment");
+
+
+
                                 output.RenderEndTag();
                                 output.RenderEndTag();
                                 output.RenderEndTag();

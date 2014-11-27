@@ -110,5 +110,10 @@ namespace KanProject
                 taskDes.Text = myReader.ToString();
             }
         }
+
+        protected void upload_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("upload.aspx");
+        }
     }
 }

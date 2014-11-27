@@ -42,6 +42,7 @@ namespace DAL
             "WHERE taskId=@taskId;", parameters);
         }
 
+
         public static List<Task> GetProjectTasks(int projectId)
         {
             List<Task> tasks = new List<Task>();

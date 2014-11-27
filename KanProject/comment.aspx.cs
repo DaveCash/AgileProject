@@ -13,7 +13,8 @@ namespace KanProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //DBConnection con = new DBConnection();
+            //string comMent = con.ExecuteTypedList<comment>;
         }
 
         protected void submit_Click(object sender, EventArgs e)
@@ -22,9 +23,10 @@ namespace KanProject
 
             DBConnection con = new DBConnection();
             List<OleDbParameter> parameters = new List<OleDbParameter>();
-            parameters.Add(new OleDbParameter("@comMent", OleDbType.Integer) { Value = comments });
+            parameters.Add(new OleDbParameter("@comMent", OleDbType.VarChar) { Value = comments });
 
-            con.ExecuteNonQuery("" + "INSERT INTO" + "Task([TaskDetail])" + "VALUES (@comMent)"+ parameters);
+            con.ExecuteNonQuery("" + "INSERT INTO" + " Task([TaskDetail])" + " VALUES (@comMent);", parameters);
+            Response.Redirect("Default.aspx");
         }
 
         protected void cancel_Click(object sender, EventArgs e)

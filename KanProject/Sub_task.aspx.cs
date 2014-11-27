@@ -6,64 +6,45 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.OleDb;
+using DAL.Models;
 namespace KanProject
 {
     public partial class Sub_task : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string projectPath = @"|DataDirectory|\UserLevelsAndCustomerOrders2014.mdb;";
-            string conStr = "Provider = Microsoft.Jet.OLEDB.4.0;" + "Data Source = " + projectPath;
-            OleDbConnection Connection = new OleDbConnection();
-
-            Connection = new OleDbConnection();
-            Connection.ConnectionString = conStr;
-            Connection.Open();
-
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.Connection = Connection;
-            cmd.CommandText = "SELECT Name FROM UserData";
-            cmd.CommandType = CommandType.Text;
-
-            OleDbDataReader myReader = cmd.ExecuteReader();
-            bool notEoF;
-            notEoF = myReader.Read();
-
-            while (notEoF)
+            var user = DAL.UsersDAL.GetAllUsers();
+            foreach (var item in user)
             {
-                assignee.Items.Add(myReader["name"].ToString());
-                notEoF = myReader.Read();
+                assignee.Items.Add(new ListItem(item.UserName, item.UserId.ToString()));
             }
-            myReader.Close();
-            Connection.Close();
         }
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            string projectPath = @"|DataDirectory|\AccessDB.mdb;";
-            string conStr = "Provider = Microsoft.Jet.OLEDB.4.0;" + "Data Source = " + projectPath;
-            OleDbConnection Connection = new OleDbConnection();
+            string assig = assignee.SelectedItem.ToString();
+            string timeEstimate = origEstimate.Text;
+            string subtask = title.Text;
+            string parentP = Request.Params["task_id"];
 
-            Connection = new OleDbConnection();
-            Connection.ConnectionString = conStr;
-            Connection.Open();
+            DBConnection con = new DBConnection();
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@taskuser", OleDbType.VarChar) { Value = assig });
+            parameters.Add(new OleDbParameter("@estimate", OleDbType.VarChar) { Value = timeEstimate });
+            parameters.Add(new OleDbParameter("@taskName", OleDbType.VarChar) { Value = subtask });
+            parameters.Add(new OleDbParameter("@ParentID", OleDbType.VarChar) { Value = parentP });
 
-
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.Connection = Connection;
-            cmd.CommandText = "INSERT INTO Task(TaskName, TaskUSer, TaskEstimate)" + " VALUES('" + title.Text + "," + assignee.Items.ToString() + "," + origEstimate.Text + "')";
-            cmd.CommandType = CommandType.Text;
+            con.ExecuteNonQuery("" +
+           "INSERT INTO" + " Task([TaskUser],[TaskName],[TaskEstimate],[ParentId]) " +
+           "VALUES (@taskuser,@taskName,@estimate,@ParentID);" , parameters);
 
             if (moreSubTask.Checked == true)
             {
                 Response.Redirect("Sub_task.aspx");
             }
-            Connection.Close();
+            con.Close();
         }
 
-        protected void title_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
