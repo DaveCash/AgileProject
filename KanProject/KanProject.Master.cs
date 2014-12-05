@@ -14,19 +14,28 @@ namespace KanProject
         public User user;
         protected void Page_Load(object sender, EventArgs e)
         {
-            user = (User)Session["User"];
+            if (!Page.IsPostBack) { 
+                user = (User)Session["User"];
 
-            if (user == null || String.IsNullOrEmpty(user.UserName))
-                Response.Redirect("Login.aspx");
+                if (user == null || String.IsNullOrEmpty(user.UserName))
+                    Response.Redirect("Login.aspx");
 
-            btnLogout.Text = "Logout: " + user.UserName;
+                btnLogout.Text = "Logout: " + user.UserName;
 
-            List<Project> projects = ProjectsDAL.GetUserProjects(user.UserId);
+                List<Project> projects = ProjectsDAL.GetUserProjects(user.UserId);
 
-            ddlProjects.DataSource = projects;
-            ddlProjects.DataValueField = "ProjectId";
-            ddlProjects.DataTextField = "ProjectName";
-            ddlProjects.DataBind();
+                ddlProjects.DataSource = projects;
+                ddlProjects.DataValueField = "ProjectId";
+                ddlProjects.DataTextField = "ProjectName";
+                ddlProjects.DataBind();
+
+                string projectId = Request["ProjectId"];
+
+                if (!String.IsNullOrEmpty(projectId))
+                    ddlProjects.Items.FindByValue(projectId).Selected = true;
+                else
+                    ddlProjects.Items.FindByValue(ProjectsDAL.GetProjectByUserId(user.UserId).ProjectId.ToString()).Selected = true;
+            }
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
@@ -41,6 +50,16 @@ namespace KanProject
             url += ddlProjects.SelectedItem.Value;
 
             Response.Redirect(url);
+        }
+
+        protected void btnProjectManagement_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ProjectManagement.aspx");
+        }
+
+        protected void ddlProjects_IndexChanged(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx?ProjectId=" + ddlProjects.SelectedValue);
         }
     }
 }

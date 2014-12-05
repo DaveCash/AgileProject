@@ -44,6 +44,7 @@
         <div class="field">
             <asp:Button runat="server" ID="dtnSubmit" OnClientClick="return saveSwimlanes();" Text="Save" />
             <asp:Button runat="server" ClientIDMode="Static" ID="btnSubmitHidden" OnClick="btnSubmit_Click" CssClass="no-display" />
+            <asp:Button runat="server" ID="btnCancel" Text="Cancel" OnClick="btnCancel_Click"/> 
         </div>
     </div>
 

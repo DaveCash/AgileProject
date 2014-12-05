@@ -10,7 +10,16 @@
 namespace KanProject {
     
     
-    public partial class ProjectEdit {
+    public partial class ProjectManagement {
+        
+        /// <summary>
+        /// rptProjects control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptProjects;
         
         /// <summary>
         /// tbProjectName control.
@@ -22,49 +31,22 @@ namespace KanProject {
         protected global::System.Web.UI.WebControls.TextBox tbProjectName;
         
         /// <summary>
-        /// ddlUsers control.
+        /// ddlOwner control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUsers;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOwner;
         
         /// <summary>
-        /// cblUsers control.
+        /// btnCreate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList cblUsers;
-        
-        /// <summary>
-        /// rptSwimlanes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptSwimlanes;
-        
-        /// <summary>
-        /// dtnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button dtnSubmit;
-        
-        /// <summary>
-        /// btnSubmitHidden control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitHidden;
+        protected global::System.Web.UI.WebControls.Button btnCreate;
         
         /// <summary>
         /// btnCancel control.

@@ -165,7 +165,18 @@ namespace DAL
             List<OleDbParameter> parameters = new List<OleDbParameter>();
             parameters.Add(new OleDbParameter("@UserId", OleDbType.Integer) { Value = userId });
 
-            projects = dbConnection.ExecuteTypedList<Project>("SELECT * FROM Project WHERE OwnerId=@UserId", Project.Create, parameters).ToList();
+            projects = dbConnection.ExecuteTypedList<Project>("SELECT DISTINCT Project.* FROM Project LEFT JOIN ProjectUsers ON Project.ProjectId = ProjectUsers.ProjectId WHERE ProjectUsers.UserId=@UserId OR Project.OwnerId=@UserId", Project.Create, parameters).ToList();
+
+            return projects;
+        }
+
+        public static List<Project> GetAllProjects()
+        {
+            List<Project> projects = new List<Project>();
+
+            DBConnection dbConnection = new DBConnection();
+
+            projects = dbConnection.ExecuteTypedList<Project>("SELECT * FROM Project", Project.Create).ToList();
 
             return projects;
         }
