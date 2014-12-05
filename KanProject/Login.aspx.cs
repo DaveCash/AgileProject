@@ -27,8 +27,9 @@ namespace KanProject
                 if (user != null)
                 {
                     Session["User"] = user;
+                    Project project = ProjectsDAL.GetProjectByUserId(user.UserId);
 
-                    Response.Redirect("Default.aspx");
+                    Response.Redirect("Default.aspx?ProjectId=" + project.ProjectId);
                 }
                 else
                 {

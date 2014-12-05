@@ -17,7 +17,14 @@ namespace KanProject
             User user = (User)Session["User"];
             if (user != null)
             {
-                Project project = ProjectsDAL.GetProjectByUserId(user.UserId);
+                string projectId = Request["ProjectId"];
+
+                Project project;
+
+                if (String.IsNullOrEmpty(projectId))
+                    project = ProjectsDAL.GetProjectByUserId(user.UserId);
+                else
+                    project = ProjectsDAL.GetProjectByProjectId(Convert.ToInt32(projectId));
 
                 if (project != null)
                 {

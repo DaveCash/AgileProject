@@ -51,6 +51,20 @@ namespace DAL
             return user;
         }
 
+        public static User GetProjectOwner(int projectId)
+        {
+            User user = new User();
+
+            DBConnection connection = new DBConnection();
+
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
+
+            user = connection.ExecuteTypedList<User>("SELECT UserData.* FROM UserData INNER JOIN Project ON UserData.UserId = Project.OwnerId WHERE Project.ProjectId = @ProjectId", User.Create, parameters).FirstOrDefault();
+
+            return user;
+        }
+
         public static User GetUserByUsername(string username)
         {
             User user = new User();
