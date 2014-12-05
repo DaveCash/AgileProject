@@ -8,7 +8,6 @@
                     <asp:HiddenField ID="TaskId" runat="server" />
                     <asp:HiddenField ID="projectId" runat="server" />
                     <asp:HiddenField ID="colIndex" runat="server" />
-                    
             </tr>
             <tr>
                 <td>Task</td>
@@ -22,6 +21,14 @@
                 <td>Complexity</td>
                 <td><asp:TextBox ID="Complexity" runat="server" Height="19px" Width="56px" ></asp:TextBox></td>
             </tr>
+           <tr>
+               <td>Assigned user</td>
+               <td>
+                   <select name="TaskUser" class="users-list">
+
+                   </select>
+               </td>
+           </tr>
        </table><br />
         <asp:Button ID="submit" runat="server" Text="Submit" OnClick="submit_Click"/><input type="button" value="close"  id="btnClose"/>
  </asp:Panel>

@@ -50,6 +50,7 @@ namespace KanProject
                 sb.Append("{\"msg\":1,");
                 sb.Append("\"TaskId\":\"" + dt.Rows[0]["TaskId"].ToString() + "\",");
                 sb.Append("\"ProjectId\":\"" + dt.Rows[0]["ProjectId"].ToString() + "\",");
+                sb.Append("\"TaskUser\":\"" + dt.Rows[0]["TaskUser"].ToString() + "\",");
                 sb.Append("\"ColIndex\":\"" + dt.Rows[0]["ColIndex"].ToString() + "\",");
                 sb.Append("\"TaskDetail\":\"" + dt.Rows[0]["TaskDetail"].ToString() + "\",");
                 sb.Append("\"TaskComplexity\":\"" + dt.Rows[0]["TaskComplexity"].ToString() + "\",");

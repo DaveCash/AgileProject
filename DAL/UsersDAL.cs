@@ -31,7 +31,7 @@ namespace DAL
             List<OleDbParameter> parameters = new List<OleDbParameter>();
             parameters.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
 
-            users = connection.ExecuteTypedList<User>("SELECT UserData.* FROM UserData INNER JOIN ProjectUsers ON UserData.UserId = ProjectUsers.UserId WHERE ProjectUsers.ProjectId = 1"
+            users = connection.ExecuteTypedList<User>("SELECT UserData.* FROM UserData INNER JOIN ProjectUsers ON UserData.UserId = ProjectUsers.UserId WHERE ProjectUsers.ProjectId = @ProjectId"
                 , User.Create, parameters).ToList();
 
             return users;

@@ -8,6 +8,9 @@ using System.Data;
 using System.Data.OleDb;
 using System.Text.RegularExpressions;
 using System.Text;
+using DAL.Models;
+using DAL;
+
 namespace KanProject
 {
 
@@ -62,13 +65,14 @@ namespace KanProject
                 StringBuilder sb = new StringBuilder();
                 if (string.IsNullOrEmpty(TaskId.Value))
                 {
-                    sb.Append("INSERT INTO Task(ProjectId,RowIndex,ColIndex,TaskDetail,TaskComplexity,TaskUser,TaskName)" + " VALUES(" + projectId.Value + ",1," + colIndex.Value + ",'" + taskDes.Text + "'," + Complexity.Text + ",0,'" + txtTaskName.Text + "')");
-                }
+                    sb.Append("INSERT INTO Task(ProjectId,RowIndex,ColIndex,TaskDetail,TaskComplexity,TaskUser,TaskName)" + " VALUES(" + projectId.Value + ",1," + colIndex.Value + ",'" + taskDes.Text + "'," + Complexity.Text + "," + Request.Form["TaskUser"] + ",'" + txtTaskName.Text + "')");
+                } 
                 else
                 {
                     sb.Append("update Task set ");
                     sb.Append(" TaskName='" + txtTaskName.Text + "',");
                     sb.Append("TaskDetail='" + taskDes.Text + "',");
+                    sb.Append("TaskUser='" + Request.Form["TaskUser"] + "',");
                     sb.Append("TaskComplexity=" + Complexity.Text);
                     sb.Append(" where TaskId=" + TaskId.Value);
                 }

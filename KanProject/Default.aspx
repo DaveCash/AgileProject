@@ -45,11 +45,8 @@
                     }
                     else
                         alert(data.msg);
-
                 }
-
-            })
-
+            });
         }
         function edit(id) {
             $.ajax({
@@ -64,6 +61,19 @@
                         $("#plhContentMain_Assign_task_taskDes").attr("value", data.TaskDetail);
                         $("#plhContentMain_Assign_task_Complexity").attr("value", data.TaskComplexity);
                         $("#divWin").show();
+
+                        getProjectUsers(data.ProjectId, function (users) {
+                            var $userList = $(".users-list");
+                            $userList.empty();
+
+                            $userList.append("<option value='0'>-Select user-</option>");
+
+                            $.each(users, function (index, user) {
+                                $userList.append("<option value='"+ user.UserId +"'>"+ user.UserName +"</option>");
+                            });
+
+                            $userList.val(data.TaskUser);
+                        });
                     }
                     else
                         alert(data.msg);
@@ -71,6 +81,27 @@
 
             })
 
+        }
+
+        function getProjectUsers(projectId, callback) {
+            $.ajax({
+                type: "POST",
+                url: "api/Projects.asmx/GetProjectUsers",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({projectId: projectId}),
+                dataType: "json",
+                success: function (response) {
+                    console.log(response.d.success);
+
+                    if (response.d.success) {
+                        console.log(response.d.users);
+                        callback(response.d.users);
+                    }
+                },
+                failure: function (response) {
+                    alert(response.d);
+                }
+            });
         }
     </script>
     <div  id="divWin" style="display:none;position:fixed;top:100px;left:300px; background-color:#FFFFE0;border:5px solid #F6A828;width:600px;height:400px;padding:10px;">

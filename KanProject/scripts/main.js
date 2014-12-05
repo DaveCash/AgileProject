@@ -39,26 +39,60 @@
             });
         }
         , CreateTask: function (colIndex) {
+            $("#divWin input[type=text]").val("");
+            $("#divWin select[value=0]").prop("selected", true);
             $("#divWin").show();
-
-            var task = {};
-
-            task.name = "new task";
-            task.id = 0;
-            task.colIndex = colIndex;
-
-            $(".kanboard tr td[data-col-index=" + colIndex + "]").append(Kanboard.TaskTemplate(task.name));
-
-            var data = {
-                projectId: $(".kanboard").data("project-id"),
-                taskName: "new task",
-                taskDescription: "",
-                colIndex: colIndex,
-                rowIndex: 1
-            };
 
             $("#plhContentMain_Assign_task_projectId").attr("value", $(".kanboard").data("project-id"))
             $("#plhContentMain_Assign_task_colIndex").attr("value", colIndex)
+
+            $.ajax({
+                type: "POST",
+                url: "api/Projects.asmx/GetProjectUsers",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ projectId: $(".kanboard").data("project-id") }),
+                dataType: "json",
+                success: function (response) {
+                    console.log(response.d.success);
+
+                    if (response.d.success) {
+                        console.log(response.d.users);
+                        var $userList = $(".users-list");
+                        $userList.empty();
+
+                        $userList.append("<option value='0'>-Select user-</option>");
+
+                        var users = response.d.users;
+
+                        $.each(users, function (index, user) {
+                            $userList.append("<option value='" + user.UserId + "'>" + user.UserName + "</option>");
+                        });
+
+                        $userList.val(data.TaskUser);
+                    }
+                },
+                failure: function (response) {
+                    alert(response.d);
+                }
+            });
+
+            //var task = {};
+
+            //task.name = "new task";
+            //task.id = 0;
+            //task.colIndex = colIndex;
+
+            //$(".kanboard tr td[data-col-index=" + colIndex + "]").append(Kanboard.TaskTemplate(task.name));
+
+            //var data = {
+            //    projectId: $(".kanboard").data("project-id"),
+            //    taskName: "new task",
+            //    taskDescription: "",
+            //    colIndex: colIndex,
+            //    rowIndex: 1
+            //};
+
+            
             /*  $.ajax({
                   type: "POST",
                   url: "api/Tasks.asmx/CreateTask",

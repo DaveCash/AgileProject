@@ -60,5 +60,15 @@ namespace KanProject.api
 
             return new { success = true };
         }
+
+        [WebMethod(EnableSession = true)]
+        public object GetProjectUsers(int projectId)
+        {
+            List<User> users;
+
+            users = UsersDAL.GetUsersByProject(projectId);
+
+            return new { success = true, users = users };
+        }
     }
 }
