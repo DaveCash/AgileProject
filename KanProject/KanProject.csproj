@@ -72,8 +72,9 @@
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\kanboard.css" />
     <Content Include="Default.aspx" />
-    <Content Include="image\LAMK_logo_RGB.gif" />
-    <Content Include="image\背景1.JPG" />
+    <Content Include="image\Background.jpg" />
+    <Content Include="image\logo-black.png" />
+    <Content Include="image\logo-white.png" />
     <Content Include="KanProject.Master" />
     <Content Include="kanp.ashx" />
     <None Include="Properties\PublishProfiles\kanapp.pubxml" />

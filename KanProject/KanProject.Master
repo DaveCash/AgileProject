@@ -14,7 +14,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <a href="http://www.lamk.fi"><asp:Image ID="Image1" runat="server" Height="51px" ImageUrl="~/Image/LAMK_logo_RGB.gif" Width="280px" /></a>
+    <a href="http://www.lamk.fi"><asp:Image ID="Image1" runat="server" Height="45px" ImageUrl="~/Image/logo-black.png" Width="458px" /></a>
     <form id="form1" runat="server">
         <div style="text-align:right; margin-bottom: 12px;">
             <asp:DropDownList runat="server" ID="ddlProjects" OnSelectedIndexChanged="ddlProjects_IndexChanged" AutoPostBack="true"></asp:DropDownList>

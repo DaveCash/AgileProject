@@ -34,6 +34,8 @@ namespace CustomControls
                     foreach (Swimlane swimlane in Project.ProjectSwimlanes)
                     {
                         output.AddAttribute("data-col-index", swimlane.ColIndex.ToString());
+                        output.AddAttribute("height:32px");
+                        
                         output.RenderBeginTag("th");
                         output.Write(swimlane.SwimlaneName);
                         output.RenderBeginTag("button");

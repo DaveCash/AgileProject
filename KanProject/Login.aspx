@@ -11,9 +11,12 @@
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 </head>
 <body>
-    <form id="form1" runat="server" style="background-image: url('Image/背景1.jpg')">
+    <div style="position:relative">
+    <form id="form1" runat="server" style="background: url('Image/Background.jpg') ;height:800px ">
         <p>
-    <a href="http://www.lamk.fi"><asp:Image ID="Image1" runat="server" Height="75px" ImageUrl="~/Image/LAMK_logo_RGB.gif" Width="359px" /></a>
+            <p>
+            &nbsp;</p>
+    <a href="http://www.lamk.fi"><asp:Image ID="Image1" runat="server"  Height="45px" ImageUrl="~/Image/logo-white.png" Width="458px"  /></a>
         </p>
         <div id="login-tabs" class="login-form login-form ui-tabs ui-widget ui-widget-content ui-corner-all">
           <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
@@ -39,12 +42,8 @@
             </div>
         </div>
         </div>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
+      
     </form>
+        </div>
 </body>
 </html>
