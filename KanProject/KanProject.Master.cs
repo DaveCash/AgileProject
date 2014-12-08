@@ -32,8 +32,11 @@ namespace KanProject
                 string projectId = Request["ProjectId"];
 
                 if (!String.IsNullOrEmpty(projectId)){
-                    ddlProjects.Items.FindByValue(projectId).Selected = true;
-                    hlMain.NavigateUrl += "?ProjectId=" + projectId;
+                    var proj = ddlProjects.Items.FindByValue(projectId);
+                    if(proj != null){
+                        proj.Selected = true;
+                        hlMain.NavigateUrl += "?ProjectId=" + projectId;
+                    }
                 }
                 else
                     ddlProjects.Items.FindByValue(ProjectsDAL.GetProjectByUserId(user.UserId).ProjectId.ToString()).Selected = true;
