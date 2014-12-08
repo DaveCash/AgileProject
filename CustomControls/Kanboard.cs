@@ -33,14 +33,12 @@ namespace CustomControls
                 {
                     foreach (Swimlane swimlane in Project.ProjectSwimlanes)
                     {
-                        output.AddAttribute("data-col-index", swimlane.ColIndex.ToString());
-                        output.AddAttribute("height:32px");
-                        
+                        output.AddAttribute("data-col-index", swimlane.ColIndex.ToString());                       
                         output.RenderBeginTag("th");
-                        output.Write(swimlane.SwimlaneName);
                         output.RenderBeginTag("button");
-                        output.Write("Add!");
+                        output.Write("+");
                         output.RenderEndTag();
+                        output.Write(swimlane.SwimlaneName);                        
                         output.RenderEndTag();
                     }
                 }
@@ -51,10 +49,10 @@ namespace CustomControls
                     {
                         output.AddAttribute("data-col-index", i.ToString());
                         output.RenderBeginTag("th");
-                        output.Write("Column " + i);
                         output.RenderBeginTag("button");
-                        output.Write("Add!");
+                        output.Write("+");
                         output.RenderEndTag();
+                        output.Write("Column " + i);                        
                         output.RenderEndTag();
                     }
                 }
