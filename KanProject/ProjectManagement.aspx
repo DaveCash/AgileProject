@@ -13,9 +13,14 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
-                    <td><%# Eval("ProjectName") %></td>
+                    <td>
+                        <%# Eval("ProjectName") %>
+                    </td>
                     <td>
                         <asp:HyperLink runat="server" Text="Edit project" NavigateUrl='<%# Eval("ProjectId", "ProjectEdit.aspx?ProjectId={0}") %>'></asp:HyperLink>
+                    </td>
+                    <td>
+                        <asp:Button runat="server" ID="btnDelete" OnClick="btnDelete_Click" Text="Delete project" ProjectId='<%# Eval("ProjectId") %>'/>
                     </td>
                 </tr>
             </ItemTemplate>

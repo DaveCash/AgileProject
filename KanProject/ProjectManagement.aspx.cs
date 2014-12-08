@@ -46,5 +46,14 @@ namespace KanProject
         {
             Response.Redirect("Default.aspx");
         }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+
+            ProjectsDAL.DeleteProject(Convert.ToInt32(btn.Attributes["ProjectId"]));
+
+            Response.Redirect("ProjectManagement.aspx");
+        }
     }
 }

@@ -180,5 +180,26 @@ namespace DAL
 
             return projects;
         }
+
+        public static void DeleteProject(int projectId)
+        {
+            // DELETE TASKS
+
+            // DELETE PROJECT USERS
+
+            // DELETE PROJECT SWIMLANES
+
+            // DELETE PROJECT 
+
+            DBConnection dbConnection = new DBConnection();
+
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
+
+            dbConnection.ExecuteNonQuery("DELETE FROM Task WHERE ProjectId=@ProjectId", parameters);
+            dbConnection.ExecuteNonQuery("DELETE FROM ProjectUsers WHERE ProjectId=@ProjectId", parameters);
+            dbConnection.ExecuteNonQuery("DELETE FROM ProjectSwimlanes WHERE ProjectId=@ProjectId", parameters);
+            dbConnection.ExecuteNonQuery("DELETE FROM Project WHERE ProjectId=@ProjectId", parameters);
+        }
     }
 }
