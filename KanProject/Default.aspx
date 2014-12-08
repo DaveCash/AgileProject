@@ -11,27 +11,15 @@
     <cc1:Kanboard runat="server" ID="Kanboard"></cc1:Kanboard>
     <script src="scripts/jquery_dialog.js"></script>
     <script type="text/javascript">
+        var intervalId = window.setInterval(function () { window.location.reload() }, 10 * 1000);
+
         $(document).ready(function () {
             Kanboard.Init();
             $("#btnClose").click(function () {
                 $("#divWin").hide();
+
+                intervalId = window.setInterval(function () { window.location.reload() }, 10 * 1000);
             })
-            //window.setInterval(checkBoard, 10 * 1000);
-            function checkBoard() {
-                //window.location.reload();
-                //$.ajax({
-                //    type: "POST",
-                //    url: "api/Projects.asmx/CheckProject",
-                //    contentType: "application/json; charset=utf-8",
-                //    dataType: "json",
-                //    success: function (response) {
-                //        console.log(response.d.message);
-                //    },
-                //    failure: function (response) {
-                //        alert(response.d);
-                //    }
-                //});
-            }
         });
 
         function del(id) {
@@ -49,17 +37,19 @@
             });
         }
         function edit(id) {
+            clearInterval(intervalId);
             $.ajax({
                 url: "/kanp.ashx?action=edit&id=" +id,
                 dataType: "json",
                 success: function (data) {
                     if (data.msg == "1") {
-                        $("#plhContentMain_Assign_task_TaskId").attr("value", data.TaskId);
-                        $("#plhContentMain_Assign_task_projectId").attr("value", data.ProjectId)
-                        $("#plhContentMain_Assign_task_colIndex").attr("value", data.ColIndex);
-                        $("#plhContentMain_Assign_task_txtTaskName").attr("value", data.TaskName);
-                        $("#plhContentMain_Assign_task_taskDes").attr("value", data.TaskDetail);
-                        $("#plhContentMain_Assign_task_Complexity").attr("value", data.TaskComplexity);
+                        $("#plhContentMain_Assign_task_TaskId").attr("value", data.TaskId).val(data.TaskId);
+                        $("#plhContentMain_Assign_task_projectId").attr("value", data.ProjectId).val(data.ProjectId);
+                        $("#plhContentMain_Assign_task_colIndex").attr("value", data.ColIndex).val(data.ColIndex);
+                        $("#plhContentMain_Assign_task_txtTaskName").attr("value", data.TaskName).val(data.TaskName);
+                        $("#plhContentMain_Assign_task_taskDes").attr("value", data.TaskDetail).val(data.TaskDetail);
+                        $("#plhContentMain_Assign_task_Complexity").attr("value", data.TaskComplexity).val(data.TaskComplexity);
+                        $("#plhContentMain_Assign_task_Estimate").attr("value", data.TaskEstimate).val(data.TaskEstimate);
                         $("#divWin").show();
 
                         getProjectUsers(data.ProjectId, function (users) {
@@ -72,7 +62,8 @@
                                 $userList.append("<option value='"+ user.UserId +"'>"+ user.UserName +"</option>");
                             });
 
-                            $userList.val(data.TaskUser);
+                            if(data)
+                                $userList.val(data.TaskUser);
                         });
                     }
                     else

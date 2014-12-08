@@ -67,8 +67,6 @@
                         $.each(users, function (index, user) {
                             $userList.append("<option value='" + user.UserId + "'>" + user.UserName + "</option>");
                         });
-
-                        $userList.val(data.TaskUser);
                     }
                 },
                 failure: function (response) {

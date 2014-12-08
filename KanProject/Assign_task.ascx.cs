@@ -65,7 +65,7 @@ namespace KanProject
                 StringBuilder sb = new StringBuilder();
                 if (string.IsNullOrEmpty(TaskId.Value))
                 {
-                    sb.Append("INSERT INTO Task(ProjectId,RowIndex,ColIndex,TaskDetail,TaskComplexity,TaskUser,TaskName)" + " VALUES(" + projectId.Value + ",1," + colIndex.Value + ",'" + taskDes.Text + "'," + Complexity.Text + "," + Request.Form["TaskUser"] + ",'" + txtTaskName.Text + "')");
+                    sb.Append("INSERT INTO Task(ProjectId,RowIndex,ColIndex,TaskDetail,TaskComplexity,TaskEstimate,TaskUser,TaskName)" + " VALUES(" + projectId.Value + ",1," + colIndex.Value + ",'" + taskDes.Text + "'," + Complexity.Text + "," + Estimate.Text + "," + Request.Form["TaskUser"] + ",'" + txtTaskName.Text + "')");
                 } 
                 else
                 {
@@ -73,6 +73,7 @@ namespace KanProject
                     sb.Append(" TaskName='" + txtTaskName.Text + "',");
                     sb.Append("TaskDetail='" + taskDes.Text + "',");
                     sb.Append("TaskUser='" + Request.Form["TaskUser"] + "',");
+                    sb.Append("TaskEstimate='" + Estimate.Text + "',");
                     sb.Append("TaskComplexity=" + Complexity.Text);
                     sb.Append(" where TaskId=" + TaskId.Value);
                 }

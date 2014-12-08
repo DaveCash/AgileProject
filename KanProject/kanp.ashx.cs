@@ -54,6 +54,7 @@ namespace KanProject
                 sb.Append("\"ColIndex\":\"" + dt.Rows[0]["ColIndex"].ToString() + "\",");
                 sb.Append("\"TaskDetail\":\"" + dt.Rows[0]["TaskDetail"].ToString() + "\",");
                 sb.Append("\"TaskComplexity\":\"" + dt.Rows[0]["TaskComplexity"].ToString() + "\",");
+                sb.Append("\"TaskEstimate\":\"" + dt.Rows[0]["TaskEstimate"].ToString() + "\",");
                 sb.Append("\"TaskName\":\"" + dt.Rows[0]["TaskName"].ToString() + "\"}");
                 context.Response.Write(sb.ToString());
             }

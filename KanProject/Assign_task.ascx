@@ -22,6 +22,10 @@
                 <td><asp:TextBox ID="Complexity" runat="server" Height="19px" Width="56px" ></asp:TextBox></td>
             </tr>
            <tr>
+               <td>Work estimation(hours)</td>
+               <td><asp:TextBox runat="server" ID="Estimate"></asp:TextBox></td>
+           </tr>
+           <tr>
                <td>Assigned user</td>
                <td>
                    <select name="TaskUser" class="users-list">

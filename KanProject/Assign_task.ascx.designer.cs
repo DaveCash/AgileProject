@@ -76,6 +76,15 @@ namespace KanProject {
         protected global::System.Web.UI.WebControls.TextBox Complexity;
         
         /// <summary>
+        /// Estimate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Estimate;
+        
+        /// <summary>
         /// submit control.
         /// </summary>
         /// <remarks>
