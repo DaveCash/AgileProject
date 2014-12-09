@@ -35,7 +35,24 @@
                 <asp:TextBox runat="server" ID="PassWord" TextMode="Password"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server" Display="Dynamic" CssClass="validator" ForeColor="Red" controltovalidate="Password" ID="passwordValidator" ErrorMessage="Password is required!"></asp:RequiredFieldValidator>
             </div>
-            <div class="form-control">
+             <div class="form-control">
+                <label for="confirmPassword" class="form-label">Confirm Password:</label>
+                <asp:TextBox runat="server" ID="confirmPassword" TextMode="Password"></asp:TextBox>
+                <asp:RequiredFieldValidator runat="server" Display="Dynamic" CssClass="validator" ForeColor="Red" controltovalidate="confirmPassword" ID="RequiredFieldValidator1" ErrorMessage="confirmPassword is required!"></asp:RequiredFieldValidator>
+                 <asp:CompareValidator ID="CompareValidator1" ControlToValidate="password" ControlToCompare="confirmPassword" runat="server" ErrorMessage="Password is not equal to confirmPassword"></asp:CompareValidator></div>
+             <div class="form-control">
+                 <label for="txtEmail"  class="form-label">email:</label>
+                 <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+             </div>
+             <div class="form-control">
+                 <label for="txtQuestion"  class="form-label">SecurityQuestion:</label>
+                 <asp:TextBox ID="txtQuestion" runat="server"></asp:TextBox>
+             </div>
+             <div class="form-control">
+                 <label for="txtAnswer"  class="form-label">answer:</label>
+                 <asp:TextBox ID="txtAnswer" runat="server"></asp:TextBox>
+             </div>
+              <div class="form-control">
                 <asp:Button runat="server" OnClick="btnRegister_Click" Text="Register"/>
             </div>
         </div>

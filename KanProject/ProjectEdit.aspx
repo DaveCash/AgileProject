@@ -44,7 +44,6 @@
         <div class="field">
             <asp:Button runat="server" ID="dtnSubmit" OnClientClick="return saveSwimlanes();" Text="Save" />
             <asp:Button runat="server" ClientIDMode="Static" ID="btnSubmitHidden" OnClick="btnSubmit_Click" CssClass="no-display" />
-            <asp:Button runat="server" ID="btnCancel" Text="Cancel" OnClick="btnCancel_Click"/> 
         </div>
     </div>
 
@@ -79,7 +78,7 @@
 
             return false;
         }
-        
+
         $("#swimlane-table tr").on("click", ".btnDeleteSwimlane", function (e) {
             e.preventDefault();
             $(this).closest("tr").remove();
@@ -88,6 +87,6 @@
             e.preventDefault();
             $("#swimlane-table").append("<tr><td><input type='Text' value='New swimlane'/></td><td><button class='btnDeleteSwimlane'>Delete swimlane</button></td></tr>");
         });
-            
+
     </script>
 </asp:Content>

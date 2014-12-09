@@ -31,7 +31,7 @@ namespace DAL
             List<OleDbParameter> parameters = new List<OleDbParameter>();
             parameters.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
 
-            users = connection.ExecuteTypedList<User>("SELECT UserData.* FROM UserData INNER JOIN ProjectUsers ON UserData.UserId = ProjectUsers.UserId WHERE ProjectUsers.ProjectId = @ProjectId"
+            users = connection.ExecuteTypedList<User>("SELECT UserData.* FROM UserData INNER JOIN ProjectUsers ON UserData.UserId = ProjectUsers.UserId WHERE ProjectUsers.ProjectId = 1"
                 , User.Create, parameters).ToList();
 
             return users;
@@ -51,20 +51,6 @@ namespace DAL
             return user;
         }
 
-        public static User GetProjectOwner(int projectId)
-        {
-            User user = new User();
-
-            DBConnection connection = new DBConnection();
-
-            List<OleDbParameter> parameters = new List<OleDbParameter>();
-            parameters.Add(new OleDbParameter("@ProjectId", OleDbType.Integer) { Value = projectId });
-
-            user = connection.ExecuteTypedList<User>("SELECT UserData.* FROM UserData INNER JOIN Project ON UserData.UserId = Project.OwnerId WHERE Project.ProjectId = @ProjectId", User.Create, parameters).FirstOrDefault();
-
-            return user;
-        }
-
         public static User GetUserByUsername(string username)
         {
             User user = new User();
@@ -79,7 +65,7 @@ namespace DAL
             return user;
         }
 
-        public static User RegisterUser(string username, string password)
+        public static User RegisterUser(string username, string password, string question, string answer, string email)
         {
             User user = new User();
 
@@ -96,20 +82,18 @@ namespace DAL
             if (!dbConnection.Reader.Read())
             {
                 parameters.Add(new OleDbParameter("@Hash", OleDbType.VarChar) { Value = hash });
-
+                parameters.Add(new OleDbParameter("@EmailAddress", OleDbType.VarChar) { Value = email });
+                parameters.Add(new OleDbParameter("@SecurityQuestion", OleDbType.VarChar) { Value = question });
+                parameters.Add(new OleDbParameter("@Answer", OleDbType.VarChar) { Value = answer });
                 dbConnection.ExecuteNonQuery("" +
                 "INSERT INTO " +
-                "UserData ([UserName], [UserPassword]) " +
-                "VALUES (@UserName,@Hash);", parameters);
+                "UserData ([UserName], [UserPassword],EmailAddress,SecurityQuestion,Answer) " +
+                "VALUES (@UserName,@Hash,@EmailAddress,@SecurityQuestion,@Answer);", parameters);
 
                 user.UserName = username;
 
-                dbConnection.Close();
-
                 return user;
             }
-
-            dbConnection.Close();
 
             return null;
         }
@@ -133,14 +117,9 @@ namespace DAL
                 {
                     user = GetUserByUsername(dbConnection.Reader["UserName"].ToString());
 
-                    dbConnection.Close();
-
                     return user;
                 };
             }
-
-            dbConnection.Close();
-
             return null;
         }
 

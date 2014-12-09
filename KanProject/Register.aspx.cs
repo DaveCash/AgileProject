@@ -23,11 +23,11 @@ namespace KanProject
 
             if (!String.IsNullOrEmpty(userName) && !String.IsNullOrEmpty(passWord))
             {
-                User user = UsersDAL.RegisterUser(userName, passWord);
+                User user = UsersDAL.RegisterUser(userName, passWord, txtQuestion.Text, txtAnswer.Text, txtEmail.Text);
                 if (user != null)
                 {
-                    //Session["User"] = user;
-                    Response.Redirect("Login.aspx");
+                    Session["User"] = user;
+                    Response.Redirect("Default.aspx");
                 }
                 else
                 {
