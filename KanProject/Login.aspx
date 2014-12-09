@@ -12,12 +12,8 @@
 </head>
 <body>
     <div style="position:relative">
-    <form id="form1" runat="server" style="background: url('Image/Background.jpg') ;height:800px ">
-        <p>
-            <p>
-            &nbsp;</p>
-    <a href="http://www.lamk.fi"><asp:Image ID="Image1" runat="server"  Height="45px" ImageUrl="~/Image/logo-white.png" Width="458px"  /></a>
-        </p>
+    <form id="form1" runat="server" style="background: url('image/Another back.jpg') ; height:800px">
+    <a href="http://www.lamk.fi"><asp:Image ID="Image1" runat="server"  Height="75px" ImageUrl="~/image/logo-black.png" Width="372px"  /></a>
         <div id="login-tabs" class="login-form login-form ui-tabs ui-widget ui-widget-content ui-corner-all">
           <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
             <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active"><a href="#login-tab" class="ui-tabs-anchor">Login</a></li>
