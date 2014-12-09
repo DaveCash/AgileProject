@@ -52,9 +52,13 @@ namespace KanProject
         {
             string url = "ProjectEdit.aspx?ProjectId=";
 
-            url += ddlProjects.SelectedItem.Value;
+            if (ddlProjects.SelectedItem != null)
+            {
+                url += ddlProjects.SelectedItem.Value;
 
-            Response.Redirect(url);
+                Response.Redirect(url);
+            }
+            
         }
 
         protected void btnProjectManagement_Click(object sender, EventArgs e)

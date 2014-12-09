@@ -26,8 +26,8 @@ namespace KanProject
                 User user = UsersDAL.RegisterUser(userName, passWord);
                 if (user != null)
                 {
-                    Session["User"] = user;
-                    Response.Redirect("Default.aspx");
+                    //Session["User"] = user;
+                    Response.Redirect("Login.aspx");
                 }
                 else
                 {
