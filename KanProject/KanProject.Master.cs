@@ -38,7 +38,7 @@ namespace KanProject
                         hlMain.NavigateUrl += "?ProjectId=" + projectId;
                     }
                 }
-                else
+                else if(projects.Count > 0)
                     ddlProjects.Items.FindByValue(ProjectsDAL.GetProjectByUserId(user.UserId).ProjectId.ToString()).Selected = true;
             }
         }
