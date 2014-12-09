@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server" style="background-image: url('image/Another back.jpg')">
         <a href="http://www.lamk.fi"><asp:Image ID="Image1" runat="server" Height="75px" ImageUrl="~/image/logo-black.png" Width="372px" /></a>
-        <div id="login-tabs" class="login-form login-form ui-tabs ui-widget ui-widget-content ui-corner-all">
+       <div id="login-tabs" class="login-form login-form ui-tabs ui-widget ui-widget-content ui-corner-all">
           <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" style="background-image: none">
               <li class="ui-state-default ui-corner-top"><a href="Login.aspx" class="ui-tabs-anchor">Login</a></li>
             <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active"><a href="#register-tab" class="ui-tabs-anchor">Register</a></li>
