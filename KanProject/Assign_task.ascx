@@ -32,6 +32,10 @@
 
                    </select>
                </td>
+               <td> Task Status<asp:DropDownList ID="status" runat="server">
+                                    <asp:ListItem Text="Uncomplete" Value="false"></asp:ListItem>
+                                    <asp:ListItem Text="Complete" Value="true"></asp:ListItem>
+                               </asp:DropDownList></td>
            </tr>
        </table><br />
         <asp:Button ID="submit" runat="server" Text="Submit" OnClick="submit_Click"/><input type="button" value="close"  id="btnClose"/>

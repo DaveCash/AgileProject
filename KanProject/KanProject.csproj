@@ -43,6 +43,10 @@
       <HintPath>..\CustomControls\obj\Debug\CustomControls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -67,6 +71,7 @@
     <Content Include="api\Tasks.asmx" />
     <Content Include="App_Data\AccessDB.mdb" />
     <Content Include="Assign_task.ascx" />
+    <Content Include="Chart.aspx" />
     <Content Include="comment.aspx" />
     <Content Include="css\general.css" />
     <Content Include="css\jquery-ui.css" />
@@ -89,6 +94,7 @@
     <Content Include="image\panel\managementhover.jpg" />
     <Content Include="KanProject.Master" />
     <Content Include="kanp.ashx" />
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\kanapp.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -103,6 +109,7 @@
     <Content Include="ProjectEdit.aspx" />
     <Content Include="ProjectManagement.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="scripts\Chart.js" />
     <Content Include="scripts\jquery-1.11.1.js" />
     <Content Include="scripts\jquery-ui.js" />
     <Content Include="scripts\jquery_dialog.js" />
@@ -126,6 +133,13 @@
     </Compile>
     <Compile Include="Assign_task.ascx.designer.cs">
       <DependentUpon>Assign_task.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Chart.aspx.cs">
+      <DependentUpon>Chart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Chart.aspx.designer.cs">
+      <DependentUpon>Chart.aspx</DependentUpon>
     </Compile>
     <Compile Include="comment.aspx.cs">
       <DependentUpon>comment.aspx</DependentUpon>

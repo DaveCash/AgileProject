@@ -27,6 +27,17 @@ namespace KanProject
             Connection.ConnectionString = conStr;
             Connection.Open();
 
+            OleDbCommand taskStatus = new OleDbCommand();
+            taskStatus.Connection = Connection;
+            taskStatus.CommandText = "SELECT TaskDone FROM Task";
+            taskStatus.CommandType = CommandType.Text;
+
+            if (taskStatus.ToString() == "true")
+            {
+                status.SelectedIndex = 1;
+            }
+            else status.SelectedIndex = 0;
+
             OleDbCommand cmd = new OleDbCommand();
             cmd.Connection = Connection;
             cmd.CommandText = "SELECT TaskName,TaskUser  FROM Task";
@@ -48,13 +59,14 @@ namespace KanProject
             //    listUser.Items.Add(myReader["TaskUser"].ToString());
             //    notEoF = myReader.Read();
             //}
+
             myReader.Close();
             Connection.Close();
         }
 
         protected void submit_Click(object sender, EventArgs e)
         {
-           
+          
             try
             {
                 if (!Regex.IsMatch(Complexity.Text.Trim(), @"^\d+$"))
@@ -65,7 +77,7 @@ namespace KanProject
                 StringBuilder sb = new StringBuilder();
                 if (string.IsNullOrEmpty(TaskId.Value))
                 {
-                    sb.Append("INSERT INTO Task(ProjectId,RowIndex,ColIndex,TaskDetail,TaskComplexity,TaskEstimate,TaskUser,TaskName)" + " VALUES(" + projectId.Value + ",1," + colIndex.Value + ",'" + taskDes.Text + "'," + Complexity.Text + "," + Estimate.Text + "," + Request.Form["TaskUser"] + ",'" + txtTaskName.Text + "')");
+                    sb.Append("INSERT INTO Task(ProjectId,RowIndex,ColIndex,TaskDetail,TaskComplexity,TaskEstimate,TaskUser,TaskName,TaskDone)" + " VALUES(" + projectId.Value + ",1," + colIndex.Value + ",'" + taskDes.Text + "'," + Complexity.Text + "," + Estimate.Text + "," + Request.Form["TaskUser"] + ",'" + txtTaskName.Text + "'"+status.SelectedValue.ToString()+")");
                 } 
                 else
                 {
@@ -75,6 +87,7 @@ namespace KanProject
                     sb.Append("TaskUser='" + Request.Form["TaskUser"] + "',");
                     sb.Append("TaskEstimate='" + Estimate.Text + "',");
                     sb.Append("TaskComplexity=" + Complexity.Text);
+                    sb.Append("TaskDone=" + status.SelectedValue.ToString());
                     sb.Append(" where TaskId=" + TaskId.Value);
                 }
                 sh.excuSql(sb.ToString());

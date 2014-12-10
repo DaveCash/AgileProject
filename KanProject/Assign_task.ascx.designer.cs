@@ -85,6 +85,15 @@ namespace KanProject {
         protected global::System.Web.UI.WebControls.TextBox Estimate;
         
         /// <summary>
+        /// status control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList status;
+        
+        /// <summary>
         /// submit control.
         /// </summary>
         /// <remarks>
