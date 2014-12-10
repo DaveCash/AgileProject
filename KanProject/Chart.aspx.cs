@@ -32,8 +32,8 @@ namespace KanProject
 
             while (notEoF)
             {
-                  project.Items.Add(myReader["ProjectName"].ToString());
-                  notEoF = myReader.Read();
+                project.Items.Add(myReader["ProjectName"].ToString());
+                notEoF = myReader.Read();
             }
             Connection.Close();
         }
@@ -53,11 +53,11 @@ namespace KanProject
 
             OleDbCommand getProjectID = new OleDbCommand();
             getProjectID.Connection = Connection;
-            getProjectID.CommandText = "SELECT ProjectId FROM ProjectUsers INNER JOIN Project ON ProjectUsers.ProjectId = Project.ProjectId WHERE Project.ProjectName = "+project.SelectedItem.ToString();
+            getProjectID.CommandText = "SELECT ProjectId FROM ProjectUsers INNER JOIN Project ON ProjectUsers.ProjectId = Project.ProjectId WHERE Project.ProjectName =" + project.SelectedItem.ToString();
 
             OleDbCommand cmd = new OleDbCommand();
             cmd.Connection = Connection;
-            cmd.CommandText = "SELECT UserId, UserName  FROM UserData WHERE ProjectId= "+getProjectID.ToString()+" ORDER BY UserId";
+            cmd.CommandText = "SELECT UserId, UserName  FROM UserData WHERE ProjectId=" + getProjectID.ToString() + " ORDER BY UserId";
             cmd.CommandType = CommandType.Text;
 
             OleDbDataReader myReader = cmd.ExecuteReader();
@@ -79,14 +79,14 @@ namespace KanProject
 
             OleDbCommand getUserId = new OleDbCommand();
             getUserId.Connection = Connection;
-            getUserId.CommandText = "SELECT TaskUser FROM Task WHERE ProjectId= "+getProjectID.ToString()+" AND TaskDone= 'yes'";
+            getUserId.CommandText = "SELECT TaskUser FROM Task WHERE ProjectId=" + getProjectID.ToString() + " AND TaskDone='yes'";
 
-            OleDbDataReader myReader1=getUserId.ExecuteReader();
+            OleDbDataReader myReader1 = getUserId.ExecuteReader();
             bool reader = myReader1.Read();
 
-            while(reader)
+            while (reader)
             {
-                String str=myReader1["TaskUser"].ToString();
+                String str = myReader1["TaskUser"].ToString();
                 int temp = Convert.ToInt32(str);
                 int sum = Convert.ToInt32(info[temp - 1, 1]);
                 sum++;
@@ -111,47 +111,6 @@ namespace KanProject
             hiddenTB.Text += "color: '" + color[count - 1] + "' , highlight: '" + highlight[count - 1] + "',";
             hiddenTB.Text += "label: '" + info[count - 1, 0] + "'}]";
 
-            //linechart
-
-
-            OleDbCommand getUserId1 = new OleDbCommand();
-            getUserId1.Connection = Connection;
-            getUserId1.CommandText = "SELECT TaskUser, TaskComplexity FROM Task WHERE ProjectId=" + getProjectID.ToString() + " AND TaskDone='yes'";
-
-            OleDbDataReader MyReader= getUserId1.ExecuteReader();
-            bool Reader = MyReader.Read();
-
-            while (Reader)
-            {
-                String str = MyReader["TaskUser"].ToString();
-                String complex_ = MyReader["TaskComplexity"].ToString();
-                int complex = Convert.ToInt32(complex_);
-                int temp = Convert.ToInt32(str);
-                int sum = Convert.ToInt32(info[temp - 1, 1]);
-                sum += complex;
-                info[temp - 1, 1] = sum.ToString();
-            }
-
-            string data_point = "{labels: [";
-            for (int i = 0; i < count - 1; i++)
-            {
-                data_point += "'" + info[i, 0] + "',";
-            }
-            data_point += "'" + info[count - 1, 0] + "'],";
-
-            data_point += "datasets: [{fillColor: 'rgba(151,187,205,0.5)',strokeColor: 'rgba(151,187,205,0.8)',highlightFill: 'rgba(151,187,205,0.75)',highlightStroke: 'rgba(151,187,205,1)',data: [";
-            for (int i = 0; i < count - 1; i++)
-            {
-                data_point += info[i, 1] + ", ";
-            }
-            data_point += info[count - 1, 1] + "]}]} ";
-
-
-            string data_piechart = hiddenTB.Text;
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), Guid.NewGuid().ToString(), "var data_piechart = " + data_piechart + ", data_point = " + data_point, true);
-
-            hiddenTB.Text = data_point;
-            form1.Controls.Add(hiddenTB);
         }
 
     }
