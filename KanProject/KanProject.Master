@@ -14,13 +14,25 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <asp:HyperLink runat="server" ID="hlMain" NavigateUrl="Default.aspx"><asp:Image ID="Image1" runat="server" Height="45px" ImageUrl="~/Image/logo-black.png" Width="458px" /></asp:HyperLink>
+    
     <form id="form1" runat="server">
         <div style="text-align:right; margin-bottom: 12px;">
-            <asp:DropDownList runat="server" ID="ddlProjects" OnSelectedIndexChanged="ddlProjects_IndexChanged" AutoPostBack="true"></asp:DropDownList>
-            <asp:Button runat="server" ID="btnEditProject" OnClick="btnEditProject_Click" Text="Edit project"></asp:Button>
-            <asp:Button runat="server" ID="btnProjectManagement" OnClick="btnProjectManagement_Click" Text="Project management" />
-            <asp:Button runat="server" ID="btnLogout" OnClick="btnLogout_Click"/>
+            <asp:Table ID="Table1" runat="server" >
+                <asp:TableRow Width="100%" >
+                    <asp:TableCell Width="458px"><asp:HyperLink runat="server" ID="hlMain" NavigateUrl="http://www.lamk.fi/Sivut/default.aspx"><asp:Image ID="Image1" runat="server" Height="45px" ImageUrl="~/Image/logo-black.png" Width="458px" /></asp:HyperLink></asp:TableCell>
+                    <asp:TableCell ></asp:TableCell>
+                    <asp:TableCell Width="150px" ><asp:DropDownList runat="server" ID="ddlProjects" OnSelectedIndexChanged="ddlProjects_IndexChanged" AutoPostBack="true"></asp:DropDownList></asp:TableCell>                                        
+                    <asp:TableCell Width="106px"><asp:HyperLink runat="server" ID="hlBoard" NavigateUrl="Default.aspx"><asp:Image ID="Image6" runat="server" Height="45px" ImageUrl="~/Image/panel/board.jpg" /></asp:HyperLink></asp:TableCell>
+                    <asp:TableCell Width="102px"><asp:HyperLink runat="server" ID="hlProjectEdit" NavigateUrl="ProjectEdit.aspx"><asp:Image ID="Image4" runat="server" Height="45px" ImageUrl="~/Image/panel/edit.jpg" /></asp:HyperLink></asp:TableCell>
+                    <asp:TableCell Width="150px"><asp:HyperLink runat="server" ID="hlAnalytics" NavigateUrl="Analytics.aspx"><asp:Image ID="Image5" runat="server" Height="45px" ImageUrl="~/Image/panel/analytics.jpg" /></asp:HyperLink></asp:TableCell>
+                    <asp:TableCell Width="150px"><asp:HyperLink runat="server" ID="hlProjectManagement" NavigateUrl="ProjectManagement.aspx"><asp:Image ID="Image3" runat="server" Height="45px" ImageUrl="~/Image/panel/management.jpg" /></asp:HyperLink></asp:TableCell>
+                    <asp:TableCell Width="101px"><asp:HyperLink runat="server" ID="hlLogout" NavigateUrl="Login.aspx"><asp:Image ID="Image2" runat="server" Height="45px" ImageUrl="~/Image/panel/logout.jpg" /></asp:HyperLink></asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+            
+            
+            
+            
         </div>
         <div>
             <asp:ContentPlaceHolder ID="plhContentMain" runat="server">

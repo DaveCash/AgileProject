@@ -21,6 +21,7 @@ namespace DAL.Models
         public int RowIndex { get; set; }
 
         public int TaskUser { get; set; }
+        public int TaskComplexity { get; set; }
 
         public static Task Create(IDataRecord record)
         {
@@ -31,6 +32,8 @@ namespace DAL.Models
                 TaskDescription = record["TaskDetail"].ToString(),
                 ColIndex = Convert.ToInt32(record["ColIndex"]),
                 RowIndex = Convert.ToInt32(record["RowIndex"]),
+                TaskUser = Convert.ToInt32(record["TaskUser"]),
+                TaskComplexity = Convert.ToInt32(record["TaskComplexity"]),
             };
         }
     }

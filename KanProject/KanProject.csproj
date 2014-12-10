@@ -76,6 +76,16 @@
     <Content Include="image\Background.jpg" />
     <Content Include="image\logo-black.png" />
     <Content Include="image\logo-white.png" />
+    <Content Include="image\panel\analytics.jpg" />
+    <Content Include="image\panel\analyticshover.jpg" />
+    <Content Include="image\panel\board.jpg" />
+    <Content Include="image\panel\boardhover.jpg" />
+    <Content Include="image\panel\edit.jpg" />
+    <Content Include="image\panel\edithover.jpg" />
+    <Content Include="image\panel\logout.jpg" />
+    <Content Include="image\panel\logouthover.jpg" />
+    <Content Include="image\panel\management.jpg" />
+    <Content Include="image\panel\managementhover.jpg" />
     <Content Include="KanProject.Master" />
     <Content Include="kanp.ashx" />
     <None Include="Properties\PublishProfiles\kanapp.pubxml" />

@@ -20,7 +20,7 @@ namespace KanProject
                 if (user == null || String.IsNullOrEmpty(user.UserName))
                     Response.Redirect("Login.aspx");
 
-                btnLogout.Text = "Logout: " + user.UserName;
+               // hlLogout.Text = "Logout: " + user.UserName;
 
                 List<Project> projects = ProjectsDAL.GetUserProjects(user.UserId);
 
@@ -43,12 +43,12 @@ namespace KanProject
             }
         }
 
-        protected void btnLogout_Click(object sender, EventArgs e)
+        protected void hlLogout_Click(object sender, EventArgs e)
         {
             Session.Remove("User");
             Response.Redirect("Login.aspx");
         }
-        protected void btnEditProject_Click(object sender, EventArgs e)
+        protected void hlEditProject_Click(object sender, EventArgs e)
         {
             string url = "ProjectEdit.aspx?ProjectId=";
 
@@ -61,7 +61,7 @@ namespace KanProject
             
         }
 
-        protected void btnProjectManagement_Click(object sender, EventArgs e)
+        protected void hlProjectManagement_Click(object sender, EventArgs e)
         {
             Response.Redirect("ProjectManagement.aspx");
         }

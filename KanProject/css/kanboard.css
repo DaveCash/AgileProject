@@ -13,14 +13,31 @@
     margin-left: auto ;
     margin-right: auto ;
     width:95%;
+    background: grey;
+    -webkit-animation: mymove 5s infinite; /* Chrome, Safari, Opera */
+    animation: mymove 5s infinite;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes mymove {
+    50% {background-color: white;}
+}
+
+/* Standard syntax */
+@keyframes mymove {
+    50% {background-color: white;}
 }
 .kanboard, .kanboard th, .kanboard td {
-    border: 1px solid black;
+    border: 1px solid white;
+    color:#1e1e1e;
 }
 .kanboard th{
     text-align: left;
-    background:#f0f0f0;  
+    background:#1D2951;  
     padding:5px;
+    height:32px;
+    color:lightgrey;
+
 }
 .kanboard td{
       
@@ -31,8 +48,9 @@
     margin-top: 5px;
     margin-left: auto ;
     margin-right: auto ;
-    border: 1px solid orange;
-    background:lightyellow;
+    border: 1px solid #fff;
+    background:rgba(29, 41, 81, 0.22);
+    
     padding: 5px;
     font-size: 95%;
     height: 65px;
@@ -42,23 +60,33 @@
 .task_header 
 {
     font-weight:bold;
-    border-bottom: 1px solid orange;
+    border-bottom: 1px solid #929090;
+    height:22px;
 }
 .task_footer
 {
-    
-    border-top:1px solid orange;   
+    height:22px;
+    border-top:1px solid #929090;   
 }
 .information_footer
 {
-    text-align:right;
+    float:right;
 }
 .task_title 
 {
     
 }
-.assigned_person
+.task_complextity
 {
-    font-style:italic;
+    
     float:right;
+}
+a:link
+{
+    text-decoration:none;
+    color:grey;
+}
+.task_body
+{
+    height:22px;
 }

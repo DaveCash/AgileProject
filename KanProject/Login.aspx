@@ -11,9 +11,10 @@
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 </head>
 <body>
-    <div style="position:relative">
-    <form id="form1" runat="server" style="background: url('image/Another back.jpg') ; height:800px">
-    <a href="http://www.lamk.fi"><asp:Image ID="Image1" runat="server"  Height="75px" ImageUrl="~/image/logo-black.png" Width="372px"  /></a>
+    <div style="position:relative;height:100%">
+    <form id="form1" runat="server" style="background: url('image/Background.jpg') ; height:800px">
+        <br />
+    <a href="http://www.lamk.fi" style="margin:12px"><asp:Image ID="Image1" runat="server"  Height="45px" ImageUrl="~/image/logo-white.png" Width="458px" /></a>
         <div id="login-tabs" class="login-form login-form ui-tabs ui-widget ui-widget-content ui-corner-all">
           <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
             <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active"><a href="#login-tab" class="ui-tabs-anchor">Login</a></li>
@@ -25,12 +26,12 @@
             </asp:Panel>
             <div class="form-control">
                 <label for="username" class="form-label">Username:</label>
-                <asp:TextBox runat="server" ID="UserName" ></asp:TextBox>
+                <asp:TextBox runat="server" ID="UserName" Width="196px" ></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server"  Display="Dynamic" CssClass="validator" ForeColor="Red" controltovalidate="username" ID="usernameValidator" ErrorMessage="Username is required!"></asp:RequiredFieldValidator>
             </div>
             <div class="form-control">
                 <label for="password" class="form-label">Password:</label>
-                <asp:TextBox runat="server" ID="PassWord" TextMode="Password"></asp:TextBox>
+                <asp:TextBox runat="server" ID="PassWord" TextMode="Password" Width="196px"></asp:TextBox>
                 <asp:RequiredFieldValidator runat="server"  Display="Dynamic" CssClass="validator" ForeColor="Red" controltovalidate="PassWord" ID="passwordValidator" ErrorMessage="Password is required!"></asp:RequiredFieldValidator>
             </div>
             <div class="form-control">

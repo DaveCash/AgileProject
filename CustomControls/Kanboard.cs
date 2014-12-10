@@ -103,16 +103,24 @@ namespace CustomControls
                                 output.Write("Delete");
                                 output.RenderEndTag();
 
-                                output.AddAttribute("class", "assigned_person");
+                                output.AddAttribute("class", "task_complextity");
                                 output.RenderBeginTag("a");
-                                output.Write(task.TaskUser);
+                                output.Write(task.TaskComplexity);
                                 output.RenderEndTag();
 
                                 output.RenderEndTag();
-
+                                
                                 output.AddAttribute("class", "task_body");
                                 output.RenderBeginTag("div");
-                                output.Write(task.TaskDescription);
+                                if (task.TaskDescription != null)
+                                {
+                                    output.Write(task.TaskDescription);
+                                }
+                                else
+                                {
+                                    output.RenderBeginTag("br");
+                                    output.RenderEndTag();
+                                }
                                 output.RenderEndTag();
 
                                 output.AddAttribute("class", "task_footer");
