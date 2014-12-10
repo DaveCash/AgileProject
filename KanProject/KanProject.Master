@@ -20,13 +20,14 @@
             <asp:Table ID="Table1" runat="server" >
                 <asp:TableRow Width="100%" >
                     <asp:TableCell Width="458px"><asp:HyperLink runat="server" ID="hlMain" NavigateUrl="http://www.lamk.fi/Sivut/default.aspx"><asp:Image ID="Image1" runat="server" Height="45px" ImageUrl="~/Image/logo-black.png" Width="458px" /></asp:HyperLink></asp:TableCell>
-                    <asp:TableCell ></asp:TableCell>
+                    <asp:TableCell Width="150px"></asp:TableCell>
                     <asp:TableCell Width="150px" ><asp:DropDownList runat="server" ID="ddlProjects" OnSelectedIndexChanged="ddlProjects_IndexChanged" AutoPostBack="true"></asp:DropDownList></asp:TableCell>                                        
-                    <asp:TableCell Width="106px"><asp:HyperLink runat="server" ID="hlBoard" NavigateUrl="Default.aspx"><asp:Image ID="Image6" runat="server" Height="45px" ImageUrl="~/Image/panel/board.jpg" /></asp:HyperLink></asp:TableCell>
-                    <asp:TableCell Width="102px"><asp:HyperLink runat="server" ID="hlProjectEdit" NavigateUrl="ProjectEdit.aspx"><asp:Image ID="Image4" runat="server" Height="45px" ImageUrl="~/Image/panel/edit.jpg" /></asp:HyperLink></asp:TableCell>
-                    <asp:TableCell Width="150px"><asp:HyperLink runat="server" ID="hlAnalytics" NavigateUrl="Analytics.aspx"><asp:Image ID="Image5" runat="server" Height="45px" ImageUrl="~/Image/panel/analytics.jpg" /></asp:HyperLink></asp:TableCell>
-                    <asp:TableCell Width="150px"><asp:HyperLink runat="server" ID="hlProjectManagement" NavigateUrl="ProjectManagement.aspx"><asp:Image ID="Image3" runat="server" Height="45px" ImageUrl="~/Image/panel/management.jpg" /></asp:HyperLink></asp:TableCell>
-                    <asp:TableCell Width="101px"><asp:HyperLink runat="server" ID="hlLogout" NavigateUrl="Login.aspx"><asp:Image ID="Image2" runat="server" Height="45px" ImageUrl="~/Image/panel/logout.jpg" /></asp:HyperLink></asp:TableCell>
+                    <asp:TableCell Width="106px"><asp:HyperLink runat="server" ID="hlBoard" NavigateUrl="Default.aspx" CssClass="hlBoard"></asp:HyperLink></asp:TableCell>
+                    <asp:TableCell Width="102px"><asp:HyperLink runat="server" ID="hlProjectEdit" NavigateUrl="ProjectEdit.aspx" CssClass="hlProjectEdit"></asp:HyperLink></asp:TableCell>
+                    <asp:TableCell Width="150px"><asp:HyperLink runat="server" ID="hlAnalytics" NavigateUrl="Analytics.aspx" CssClass="hlAnalytics"></asp:HyperLink></asp:TableCell>
+                    <asp:TableCell Width="150px"><asp:HyperLink runat="server" ID="hlProjectManagement" NavigateUrl="ProjectManagement.aspx" CssClass="hlProjectManagement"></asp:HyperLink></asp:TableCell>
+                    <asp:TableCell Width="101px"><asp:HyperLink runat="server" ID="hlLogout" NavigateUrl="Login.aspx" CssClass="hlLogout"></asp:HyperLink></asp:TableCell>
+             
                 </asp:TableRow>
             </asp:Table>
             
