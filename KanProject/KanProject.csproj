@@ -73,6 +73,7 @@
     <Content Include="css\kanboard.css" />
     <Content Include="Default.aspx" />
     <Content Include="image\Another back.jpg" />
+    <Content Include="image\arrow.png" />
     <Content Include="image\Background.jpg" />
     <Content Include="image\logo-black.png" />
     <Content Include="image\logo-white.png" />

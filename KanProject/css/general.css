@@ -27,3 +27,115 @@
     color: red;
     margin-bottom: 10px;
 }
+
+
+.hlBoard:link 
+{
+    background-image:url(/Image/panel/board.jpg);
+    height:45px;
+    width:106px;
+    display:block;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+.hlBoard:hover
+{
+    background-image:url(/Image/panel/boardhover.jpg);
+    height:45px;
+    width:106px;
+    display:block;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+.hlAnalytics:link 
+{
+    background-image:url(/Image/panel/Analytics.jpg);
+    height:45px;
+    width:150px;
+    display:block;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+.hlAnalytics:hover
+{
+    background-image:url(/Image/panel/Analyticshover.jpg);
+    height:45px;
+    width:150px;
+    display:block;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+.hlProjectEdit:link 
+{
+    background-image:url(/Image/panel/Edit.jpg);
+    height:45px;
+    width:102px;
+    display:block;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+.hlProjectEdit:hover
+{
+    background-image:url(/Image/panel/Edithover.jpg);
+    height:45px;
+    width:102px;
+    display:block;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+.hlLogout:link 
+{
+    background-image:url(/Image/panel/Logout.jpg);
+    height:45px;
+    width:101px;
+    display:block;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+.hlLogout:hover
+{
+    background-image:url(/Image/panel/Logouthover.jpg);
+    height:45px;
+    width:101px;
+    display:block;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+.hlProjectManagement:link 
+{
+    background-image:url(/Image/panel/management.jpg);
+    height:45px;
+    width:150px;
+    display:block;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+.hlProjectManagement:hover
+{
+    background-image:url(/Image/panel/managementhover.jpg);
+    height:45px;
+    width:150px;
+    display:block;
+    margin: 0 auto;
+    text-indent: -9999px;
+}
+
+.dll 
+{
+            border:0px solid #7d6754;
+            color:#888584;
+            border-radius:5px;
+            padding:3px;
+            -webkit-appearance: none; 
+            background-image:url(/Image/arrow.png);
+            background-size:20px 20px;
+            background-position:180px;
+            background-repeat:no-repeat;
+            text-indent: 0.01px;/*In Firefox*/
+            text-overflow: '';/*In Firefox*/
+            width:200px;
+            height:45px;
+            font-size:18px;
+            
+            font-family:Arial;
+}
