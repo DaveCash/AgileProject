@@ -67,49 +67,49 @@ namespace KanProject {
         protected global::System.Web.UI.WebControls.DropDownList ddlProjects;
         
         /// <summary>
-        /// hlBoard control.
+        /// btnBoard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlBoard;
+        protected global::System.Web.UI.WebControls.ImageButton btnBoard;
         
         /// <summary>
-        /// hlProjectEdit control.
+        /// btnProjectEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button hlProjectEdit;
+        protected global::System.Web.UI.WebControls.ImageButton btnProjectEdit;
         
         /// <summary>
-        /// hlAnalytics control.
+        /// btnAnalytics control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlAnalytics;
+        protected global::System.Web.UI.WebControls.ImageButton btnAnalytics;
         
         /// <summary>
-        /// hlProjectManagement control.
+        /// btnProjectManagement control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlProjectManagement;
+        protected global::System.Web.UI.WebControls.ImageButton btnProjectManagement;
         
         /// <summary>
-        /// hlLogout control.
+        /// btnLogout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlLogout;
+        protected global::System.Web.UI.WebControls.ImageButton btnLogout;
         
         /// <summary>
         /// plhContentMain control.

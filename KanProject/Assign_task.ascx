@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Assign_task.ascx.cs" Inherits="KanProject.WebUserControl2" %>
 <asp:Panel ID="Panel1" runat="server">
-    <h1>Adding Task</h1>
+    <h1>Task</h1>
        <table>
             <tr style="display:none;">
                 <td>Member</td>

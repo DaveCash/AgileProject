@@ -43,12 +43,23 @@ namespace KanProject
             }
         }
 
-        protected void hlLogout_Click(object sender, EventArgs e)
+        protected void btnBoard_Click(object sender, EventArgs e)
+        {
+            string url = "Default.aspx?ProjectId=";
+
+            if (ddlProjects.SelectedItem != null)
+            {
+                url += ddlProjects.SelectedItem.Value;
+
+                Response.Redirect(url);
+            }
+        }
+        protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Remove("User");
             Response.Redirect("Login.aspx");
         }
-        protected void hlEditProject_Click(object sender, EventArgs e)
+        protected void btnEditProject_Click(object sender, EventArgs e)
         {
             string url = "ProjectEdit.aspx?ProjectId=";
 
@@ -60,8 +71,19 @@ namespace KanProject
             }
             
         }
+        protected void btnAnalytics_Click(object sender, EventArgs e)
+        {
+            string url = "Chart.aspx?ProjectId=";
 
-        protected void hlProjectManagement_Click(object sender, EventArgs e)
+            if (ddlProjects.SelectedItem != null)
+            {
+                url += ddlProjects.SelectedItem.Value;
+
+                Response.Redirect(url);
+            }
+
+        }
+        protected void btnProjectManagement_Click(object sender, EventArgs e)
         {
             Response.Redirect("ProjectManagement.aspx");
         }

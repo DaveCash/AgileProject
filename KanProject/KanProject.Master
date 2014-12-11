@@ -22,11 +22,11 @@
                     <asp:TableCell Width="458px"><asp:HyperLink runat="server" ID="hlMain" NavigateUrl="http://www.lamk.fi/Sivut/default.aspx"><asp:Image ID="Image1" runat="server" Height="45px" ImageUrl="~/Image/logo-black.png" Width="458px" /></asp:HyperLink></asp:TableCell>
                     <asp:TableCell Width="150px"></asp:TableCell>
                     <asp:TableCell Width="150px" ><asp:DropDownList runat="server" ID="ddlProjects" OnSelectedIndexChanged="ddlProjects_IndexChanged" AutoPostBack="true" CssClass="dll"></asp:DropDownList></asp:TableCell>                                        
-                    <asp:TableCell Width="106px"><asp:HyperLink runat="server" ID="hlBoard" NavigateUrl="Default.aspx" CssClass="hlBoard"></asp:HyperLink></asp:TableCell>
-                    <asp:TableCell Width="102px"><asp:Button runat="server" ID="hlProjectEdit" Text="Edit project" OnClick="hlEditProject_Click" CssClass="hlProjectEdit"></asp:Button></asp:TableCell>
-                    <asp:TableCell Width="150px"><asp:HyperLink runat="server" ID="hlAnalytics" NavigateUrl="Chart.aspx" CssClass="hlAnalytics"></asp:HyperLink></asp:TableCell>
-                    <asp:TableCell Width="150px"><asp:HyperLink runat="server" ID="hlProjectManagement" NavigateUrl="ProjectManagement.aspx" CssClass="hlProjectManagement"></asp:HyperLink></asp:TableCell>
-                    <asp:TableCell Width="101px"><asp:HyperLink runat="server" ID="hlLogout" NavigateUrl="Login.aspx" CssClass="hlLogout"></asp:HyperLink></asp:TableCell>
+                    <asp:TableCell Width="106px"><asp:ImageButton runat="server" ID="btnBoard"  OnClick="btnBoard_Click" ImageUrl="~/image/panel/board.jpg"></asp:ImageButton></asp:TableCell>
+                    <asp:TableCell Width="102px"><asp:ImageButton runat="server" ID="btnProjectEdit"  OnClick="btnEditProject_Click"  ImageUrl="~/image/panel/edit.jpg"></asp:ImageButton></asp:TableCell>
+                    <asp:TableCell Width="150px"><asp:ImageButton runat="server" ID="btnAnalytics" OnClick="btnAnalytics_Click" ImageUrl="~/image/panel/analytics.jpg"></asp:ImageButton></asp:TableCell>
+                    <asp:TableCell Width="150px"><asp:ImageButton runat="server" ID="btnProjectManagement" OnClick="btnProjectManagement_Click" ImageUrl="~/image/panel/management.jpg"></asp:ImageButton></asp:TableCell>
+                    <asp:TableCell Width="101px"><asp:ImageButton runat="server" ID="btnLogout"  OnClick="btnLogout_Click" ImageUrl="~/image/panel/logout.jpg"></asp:ImageButton></asp:TableCell>
              
                 </asp:TableRow>
             </asp:Table>

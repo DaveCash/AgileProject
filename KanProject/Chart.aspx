@@ -1,14 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Chart.aspx.cs" Inherits="KanProject.Chart" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/KanProject.Master" AutoEventWireup="true" CodeBehind="Chart.aspx.cs" Inherits="KanProject.Chart" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Chart</title>
-    <script src="scripts/Chart.js"></script>
-</head>
-<body>
-    <form id="form1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" type="text/css" href="css/kanboard.css" />
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="plhContentMain" runat="server">
+    <div style="width: 25%; margin-top: 20px;">
+    
     <asp:DropDownList ID="project" runat="server"></asp:DropDownList>
     <asp:Button ID="submit" runat="server" Text="Submit" OnClick="submit_Click" />
     <div id="canvas-holder">
@@ -31,6 +28,5 @@
         }
            
     </script>
-    </form>
-</body>
-</html>
+  </div>
+</asp:Content>
