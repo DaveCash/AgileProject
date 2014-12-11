@@ -43,6 +43,7 @@
 
         <asp:Button runat="server" ID="btnCreate" OnClick="btnCreate_Click" Text="Create"/>
         <asp:Button runat="server" ID="btnCancel" OnClick="btnCancel_Click" Text="Cancel" />
+        <asp:Button runat="server" ID="btnChart" Text="Chart Page" OnClick="btnChart_Click" />
     </div>
 
     <script type="text/javascript">

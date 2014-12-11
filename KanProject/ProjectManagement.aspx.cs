@@ -55,5 +55,10 @@ namespace KanProject
 
             Response.Redirect("ProjectManagement.aspx");
         }
+
+        protected void btnChart_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Chart.aspx");
+        }
     }
 }

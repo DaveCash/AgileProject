@@ -15,7 +15,7 @@
             </tr>
             <tr>
                 <td>Task Description</td>
-                <td><asp:TextBox ID="taskDes" runat="server" Height="100px" Width="400px" ></asp:TextBox></td>
+                <td><asp:TextBox ID="taskDes" runat="server" Height="71px" Width="300px" ></asp:TextBox></td>
             </tr>
             <tr>
                 <td>Complexity</td>
@@ -32,11 +32,10 @@
 
                    </select>
                </td>
-               <td> Task Status<asp:DropDownList ID="status" runat="server">
-                                    <asp:ListItem Text="Uncomplete" Value="false"></asp:ListItem>
-                                    <asp:ListItem Text="Complete" Value="true"></asp:ListItem>
-                               </asp:DropDownList></td>
            </tr>
+          
        </table><br />
-        <asp:Button ID="submit" runat="server" Text="Submit" OnClick="submit_Click"/><input type="button" value="close"  id="btnClose"/>
+        <asp:Button ID="submit" runat="server" Text="Submit" OnClick="submit_Click"/>
+        <input type="button" value="close"  id="btnClose"/>
+        <asp:Button ID="btnComment" runat="server" Text="Give Comment" OnClick="btnComment_Click1" />
  </asp:Panel>

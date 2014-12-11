@@ -64,5 +64,10 @@ namespace KanProject
             System.Threading.Thread.Sleep(500);
             Response.Redirect("Default.aspx?ProjectId=" + projectId);
         }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("upload.aspx");
+        }
     }
 }

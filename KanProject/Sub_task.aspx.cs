@@ -27,22 +27,30 @@ namespace KanProject
             string subtask = title.Text;
             string parentP = Request.Params["task_id"];
 
-            DBConnection con = new DBConnection();
-            List<OleDbParameter> parameters = new List<OleDbParameter>();
-            parameters.Add(new OleDbParameter("@taskuser", OleDbType.VarChar) { Value = assig });
-            parameters.Add(new OleDbParameter("@estimate", OleDbType.VarChar) { Value = timeEstimate });
-            parameters.Add(new OleDbParameter("@taskName", OleDbType.VarChar) { Value = subtask });
-            parameters.Add(new OleDbParameter("@ParentID", OleDbType.VarChar) { Value = parentP });
+            string projectPath = @"|DataDirectory|\AccessDB.mdb;";
+            string conStr = "Provider = Microsoft.Jet.OLEDB.4.0;" + "Data Source = " + projectPath;
+            OleDbConnection Connection = new OleDbConnection();
 
-            con.ExecuteNonQuery("" +
-           "INSERT INTO" + " Task([TaskUser],[TaskName],[TaskEstimate],[ParentId]) " +
-           "VALUES (@taskuser,@taskName,@estimate,@ParentID);" , parameters);
+            Connection = new OleDbConnection();
+            Connection.ConnectionString = conStr;
+            Connection.Open();
+
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.Connection = Connection;
+            cmd.CommandText = "INSERT INTO Task (TaskName, TaskEstimate, ParentId,TaskUser)"+
+                              "VALUES ("+subtask+","+Convert.ToInt32(timeEstimate)+","+Convert.ToInt32(parentP)+",("+
+                              "SELECT UserId FROM UserData WHERE UserName="+assig+"))";
+           
 
             if (moreSubTask.Checked == true)
             {
                 Response.Redirect("Sub_task.aspx");
             }
-            con.Close();
+            else
+            {
+                Response.Redirect("Default.aspx");
+            }
+            Connection.Close();
         }
 
         

@@ -13,19 +13,41 @@ namespace KanProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //DBConnection con = new DBConnection();
-            //string comMent = con.ExecuteTypedList<comment>;
+           
+            string projectPath = @"|DataDirectory|\AccessDB.mdb;";
+            string conStr = "Provider = Microsoft.Jet.OLEDB.4.0;" + "Data Source = " + projectPath;
+            OleDbConnection Connection = new OleDbConnection();
+
+            Connection = new OleDbConnection();
+            Connection.ConnectionString = conStr;
+            Connection.Open();
+
+            if (Request.QueryString["taskId"] != null)
+            {
+                int i = Convert.ToInt32(Request.QueryString["TaskId"]);
+                OleDbCommand cmd = new OleDbCommand();
+                cmd.Connection = Connection;
+                cmd.CommandText = "SELECT CommentText FROM Comments WHERE TaskId=" + i;
+                string textComment = Convert.ToString(cmd.ExecuteScalar());
+                commentBox.Text = textComment;
+            }
+           
         }
 
         protected void submit_Click(object sender, EventArgs e)
         {
-            string comments = commentBox.Text;
+            string projectPath = @"|DataDirectory|\AccessDB.mdb;";
+            string conStr = "Provider = Microsoft.Jet.OLEDB.4.0;" + "Data Source = " + projectPath;
+            OleDbConnection Connection = new OleDbConnection();
 
-            DBConnection con = new DBConnection();
-            List<OleDbParameter> parameters = new List<OleDbParameter>();
-            parameters.Add(new OleDbParameter("@comMent", OleDbType.VarChar) { Value = comments });
+            Connection = new OleDbConnection();
+            Connection.ConnectionString = conStr;
+            Connection.Open();
 
-            con.ExecuteNonQuery("" + "INSERT INTO" + " Task([TaskDetail])" + " VALUES (@comMent);", parameters);
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.Connection = Connection;
+            cmd.CommandText = "INSERT INTO Comments (CommentText, TaskId) VALUES ('"+commentBox.Text+"',"+Convert.ToInt32(Request.QueryString["taskId"])+");";
+           
             Response.Redirect("Default.aspx");
         }
 

@@ -27,17 +27,6 @@ namespace KanProject
             Connection.ConnectionString = conStr;
             Connection.Open();
 
-            OleDbCommand taskStatus = new OleDbCommand();
-            taskStatus.Connection = Connection;
-            taskStatus.CommandText = "SELECT TaskDone FROM Task";
-            taskStatus.CommandType = CommandType.Text;
-
-            if (taskStatus.ToString() == "true")
-            {
-                status.SelectedIndex = 1;
-            }
-            else status.SelectedIndex = 0;
-
             OleDbCommand cmd = new OleDbCommand();
             cmd.Connection = Connection;
             cmd.CommandText = "SELECT TaskName,TaskUser  FROM Task";
@@ -77,7 +66,7 @@ namespace KanProject
                 StringBuilder sb = new StringBuilder();
                 if (string.IsNullOrEmpty(TaskId.Value))
                 {
-                    sb.Append("INSERT INTO Task(ProjectId,RowIndex,ColIndex,TaskDetail,TaskComplexity,TaskEstimate,TaskUser,TaskName,TaskDone)" + " VALUES(" + projectId.Value + ",1," + colIndex.Value + ",'" + taskDes.Text + "'," + Complexity.Text + "," + Estimate.Text + "," + Request.Form["TaskUser"] + ",'" + txtTaskName.Text + "'"+status.SelectedValue.ToString()+")");
+                    sb.Append("INSERT INTO Task(ProjectId,RowIndex,ColIndex,TaskDetail,TaskComplexity,TaskEstimate,TaskUser,TaskName)" + " VALUES(" + projectId.Value + ",1," + colIndex.Value + ",'" + taskDes.Text + "'," + Convert.ToUInt32(Complexity.Text) + "," + Convert.ToUInt32(Estimate.Text) + "," + Request.Form["TaskUser"] + ",'" + txtTaskName.Text + "')");
                 } 
                 else
                 {
@@ -85,9 +74,8 @@ namespace KanProject
                     sb.Append(" TaskName='" + txtTaskName.Text + "',");
                     sb.Append("TaskDetail='" + taskDes.Text + "',");
                     sb.Append("TaskUser='" + Request.Form["TaskUser"] + "',");
-                    sb.Append("TaskEstimate='" + Estimate.Text + "',");
-                    sb.Append("TaskComplexity=" + Complexity.Text);
-                    sb.Append("TaskDone=" + status.SelectedValue.ToString());
+                    sb.Append("TaskEstimate=" + Convert.ToUInt32(Estimate.Text) + ",");
+                    sb.Append("TaskComplexity=" + Convert.ToUInt32(Complexity.Text));
                     sb.Append(" where TaskId=" + TaskId.Value);
                 }
                 sh.excuSql(sb.ToString());
@@ -129,9 +117,10 @@ namespace KanProject
             }
         }
 
-        protected void upload_Click(object sender, EventArgs e)
+       
+        protected void btnComment_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("upload.aspx");
+            Response.Redirect("comment.aspx?taskId=" + TaskId.Value);
         }
     }
 }

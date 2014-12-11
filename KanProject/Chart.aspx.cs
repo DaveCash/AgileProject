@@ -33,6 +33,7 @@ namespace KanProject
                 project.Items.Add(myReader["ProjectName"].ToString());
                 notEoF = myReader.Read();
             }
+            myReader.Close();
             Connection.Close();
         }
 
@@ -64,8 +65,8 @@ namespace KanProject
                 var part = new PieChartPart();
                 part.label = myReader[0].ToString();
                 part.value = Convert.ToInt32(myReader[1]);
-                part.color = color[i, 1];
-                part.highlight = color[i, 0];
+                part.color = color[1, i];
+                part.highlight = color[0, i];
                 parts.Add(part);
                 i++;
             }
