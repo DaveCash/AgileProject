@@ -96,6 +96,7 @@
     <Content Include="kanp.ashx" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\kanapp.pubxml" />
+    <None Include="Properties\PublishProfiles\kanapp2.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

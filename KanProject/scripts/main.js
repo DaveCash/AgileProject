@@ -41,6 +41,7 @@
         , CreateTask: function (colIndex) {
             $("#divWin input[type=text]").val("");
             $("#divWin select[value=0]").prop("selected", true);
+            clearInterval(intervalId);
             $("#divWin").show();
 
             $("#plhContentMain_Assign_task_projectId").attr("value", $(".kanboard").data("project-id"))
