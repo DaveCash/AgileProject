@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/KanProject.Master" AutoEventWireup="true" CodeBehind="Chart.aspx.cs" Inherits="KanProject.Chart" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <script src="scripts/Chart.js"></script>
     <link rel="stylesheet" type="text/css" href="css/kanboard.css" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="plhContentMain" runat="server">
